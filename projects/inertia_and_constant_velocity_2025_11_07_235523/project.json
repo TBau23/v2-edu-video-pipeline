@@ -1,0 +1,144 @@
+{
+  "project_id": "inertia_and_constant_velocity_2025_11_07_235523",
+  "script": {
+    "title": "Newton's First Law of Motion",
+    "topic": "inertia and constant velocity",
+    "acts": [
+      {
+        "id": "act_1_motivation",
+        "narration": "Imagine you're sitting in a car at a red light. When the light turns green and the car accelerates forward, you feel pushed back into your seat. But why? The answer lies in one of the most fundamental principles of physics.",
+        "visuals": [
+          {
+            "type": "animation",
+            "content": "car_at_stoplight_then_accelerating",
+            "animation_style": "play",
+            "duration": null,
+            "position": "center",
+            "params": {
+              "duration": 4.0
+            }
+          }
+        ],
+        "estimated_duration": 12.0,
+        "purpose": "Hook the viewer with a relatable scenario",
+        "notes": null
+      },
+      {
+        "id": "act_2_concept",
+        "narration": "Newton's First Law of Motion states that an object at rest stays at rest, and an object in motion stays in motion at constant velocity, unless acted upon by an external force. This property is called inertia.",
+        "visuals": [
+          {
+            "type": "text",
+            "content": "Newton's First Law of Motion",
+            "animation_style": "write",
+            "duration": null,
+            "position": "top",
+            "params": {
+              "font_size": 48,
+              "color": "accent"
+            }
+          },
+          {
+            "type": "text",
+            "content": "Objects resist changes to their motion",
+            "animation_style": "fade",
+            "duration": null,
+            "position": "center",
+            "params": {
+              "font_size": 36
+            }
+          }
+        ],
+        "estimated_duration": 10.0,
+        "purpose": "Introduce the core concept",
+        "notes": null
+      },
+      {
+        "id": "act_3_equation",
+        "narration": "Mathematically, we express this as F equals m times a. When the net force F is zero, the acceleration a is also zero, meaning velocity remains constant.",
+        "visuals": [
+          {
+            "type": "equation",
+            "content": "\\sum F = ma",
+            "animation_style": "write",
+            "duration": null,
+            "position": "center",
+            "params": {
+              "color": "equation_color"
+            }
+          },
+          {
+            "type": "equation",
+            "content": "F = 0 \\Rightarrow a = 0",
+            "animation_style": "write",
+            "duration": 2.0,
+            "position": "center",
+            "params": {}
+          }
+        ],
+        "estimated_duration": 8.0,
+        "purpose": "Show the mathematical relationship",
+        "notes": null
+      },
+      {
+        "id": "act_4_examples",
+        "narration": "Let's look at three examples. First, a hockey puck sliding on ice keeps moving in a straight line because there's minimal friction. Second, you lurch forward when a car brakes because your body wants to maintain its forward motion. Third, a book on a table stays at rest until you push it.",
+        "visuals": [
+          {
+            "type": "animation",
+            "content": "hockey_puck_sliding",
+            "animation_style": "play",
+            "duration": null,
+            "position": "center",
+            "params": {}
+          },
+          {
+            "type": "animation",
+            "content": "person_in_braking_car",
+            "animation_style": "play",
+            "duration": null,
+            "position": "center",
+            "params": {}
+          },
+          {
+            "type": "animation",
+            "content": "book_on_table",
+            "animation_style": "play",
+            "duration": null,
+            "position": "center",
+            "params": {}
+          }
+        ],
+        "estimated_duration": 18.0,
+        "purpose": "Build intuition with concrete examples",
+        "notes": null
+      },
+      {
+        "id": "act_5_conclusion",
+        "narration": "Inertia is everywhere in our daily lives. Understanding Newton's First Law helps us predict how objects move and explains why seatbelts, airbags, and crumple zones are so important. Objects naturally resist changes to their motion - that's the essence of inertia.",
+        "visuals": [
+          {
+            "type": "text",
+            "content": "Inertia: Objects resist changes to their motion",
+            "animation_style": "fade",
+            "duration": null,
+            "position": "center",
+            "params": {
+              "font_size": 42
+            }
+          }
+        ],
+        "estimated_duration": 12.0,
+        "purpose": "Connect to real-world applications and conclude",
+        "notes": null
+      }
+    ],
+    "source_prompt": "Create an educational video explaining Newton's First Law with real-world examples",
+    "style_profile": "default"
+  },
+  "audio_segments": [],
+  "workspace_path": "/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/projects/inertia_and_constant_velocity_2025_11_07_235523",
+  "status": "script_only",
+  "preview_video_path": null,
+  "final_video_path": null
+}

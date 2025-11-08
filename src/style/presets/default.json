@@ -1,0 +1,57 @@
+{
+  "name": "default",
+  "description": "Default dark theme with blue accents - clean and professional",
+  "colors": {
+    "background": "#0f0f0f",
+    "primary": "#ffffff",
+    "accent": "#58a6ff",
+    "secondary": "#8b949e",
+    "equation_color": "#58a6ff",
+    "highlight_color": "#f78166",
+    "graph_colors": [
+      "#58a6ff",
+      "#f78166",
+      "#56d364",
+      "#e3b341"
+    ]
+  },
+  "typography": {
+    "font_family": "Helvetica",
+    "base_font_size": 36,
+    "title_size": 72,
+    "heading_size": 48,
+    "body_size": 36,
+    "equation_size": 48,
+    "caption_size": 28
+  },
+  "animation": {
+    "fade_duration": 0.3,
+    "write_duration": 1.0,
+    "draw_duration": 1.5,
+    "pause_after_title": 0.5,
+    "pause_between_acts": 0.3,
+    "pause_after_equation": 0.8,
+    "default_easing": "smooth"
+  },
+  "voice": {
+    "provider": "openai",
+    "voice_id": "alloy",
+    "speed": 1.0,
+    "pitch": null,
+    "add_pauses": true,
+    "pause_markers": {
+      ".": 0.5,
+      ",": 0.3,
+      "?": 0.6,
+      "!": 0.6
+    }
+  },
+  "layout": {
+    "resolution": [1920, 1080],
+    "fps": 30,
+    "margin": 100,
+    "content_padding": 50,
+    "title_position": "top",
+    "equation_position": "center"
+  }
+}

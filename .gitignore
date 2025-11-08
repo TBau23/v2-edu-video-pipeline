@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+.claude/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+
+# Project-specific
+projects/*/  # User project workspaces (can be versioned separately)
+!projects/.gitkeep
+
+# Manim
+media/
+videos/
+
+# OS
+.DS_Store
+Thumbs.db
