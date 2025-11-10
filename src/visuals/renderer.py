@@ -17,11 +17,16 @@ from dataclasses import dataclass
 
 from manim import Scene, Text, MathTex, Axes, Write, FadeIn, FadeOut, Create, ReplacementTransform
 from manim import config as manim_config, UP, DOWN, LEFT, RIGHT
+import logging
 
 from src.primitives.models import Act, VisualSpec, AudioSegment
 from src.style.config import StyleConfig
 from src.visuals.executor import SceneExecutor
 from src.visuals.timing import VisualTimingCalculator, SyncPoint
+from src.visuals.animations import AnimationLibrary
+from src.visuals.params import convert_params, merge_params_with_defaults
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -308,23 +313,65 @@ class VisualRenderer:
                 #     self.play(Create(plot), run_time=duration * 0.5)
 
             def _render_animation(self, visual: VisualSpec, duration: float):
-                """Render a custom animation.
+                """Render a custom animation from the AnimationLibrary.
 
-                This is the hardest part - creating meaningful physics animations
-                from text descriptions.
+                Looks up the animation by name, converts parameters, and renders it.
                 """
-                # TODO: This requires building a library of reusable animations
-                # For now, just show placeholder text
-                placeholder = Text(
-                    f"[Animation: {visual.content[:50]}...]",
-                    font_size=24,
-                    color=style.colors.secondary
-                )
+                anim_name = visual.content
 
-                placeholder = self._apply_position(placeholder, visual.position)
-                self.play(FadeIn(placeholder), run_time=duration * 0.2)
-                self.wait(duration * 0.6)
-                self.play(FadeOut(placeholder), run_time=duration * 0.2)
+                # Try to get animation from library
+                try:
+                    anim_func = AnimationLibrary.get_animation(anim_name)
+                except KeyError:
+                    # Animation not found, show placeholder
+                    logger.warning(f"Animation not found: {anim_name}")
+                    placeholder = Text(
+                        f"[Animation not found: {anim_name}]",
+                        font_size=24,
+                        color=style.colors.secondary
+                    )
+                    placeholder = self._apply_position(placeholder, visual.position)
+                    self.play(FadeIn(placeholder), run_time=duration * 0.2)
+                    self.wait(duration * 0.6)
+                    self.play(FadeOut(placeholder), run_time=duration * 0.2)
+                    return
+
+                # Convert parameters from VisualSpec format to Python types
+                converted_params = convert_params(visual.params)
+                params = merge_params_with_defaults(converted_params, duration)
+
+                # Call animation function
+                try:
+                    mobject, animations, actual_duration = anim_func(**params)
+
+                    # Apply positioning if specified
+                    if visual.position and visual.position != "center":
+                        mobject = self._apply_position(mobject, visual.position)
+
+                    # Add mobject to scene
+                    self.add(mobject)
+
+                    # Play animations
+                    for anim in animations:
+                        if isinstance(anim, (list, tuple)):
+                            # Multiple simultaneous animations
+                            self.play(*anim)
+                        else:
+                            # Single animation
+                            self.play(anim)
+
+                except Exception as e:
+                    # Animation function failed, show error placeholder
+                    logger.error(f"Animation {anim_name} failed: {e}", exc_info=True)
+                    placeholder = Text(
+                        f"[Animation error: {anim_name}]",
+                        font_size=24,
+                        color=style.colors.secondary
+                    )
+                    placeholder = self._apply_position(placeholder, visual.position)
+                    self.play(FadeIn(placeholder), run_time=duration * 0.2)
+                    self.wait(duration * 0.6)
+                    self.play(FadeOut(placeholder), run_time=duration * 0.2)
 
             def _render_diagram(self, visual: VisualSpec, duration: float):
                 """Render a diagram."""

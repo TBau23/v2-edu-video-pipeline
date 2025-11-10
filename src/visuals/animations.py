@@ -213,7 +213,9 @@ class MathAnimations:
         part_duration = duration / len(equations)
 
         for eq in equations:
-            animations.append((Write(eq), part_duration))
+            # Note: Renderer will need to handle run_time for each animation
+            # For now, return animation objects without timing tuples
+            animations.append(Write(eq, run_time=part_duration))
 
         return VGroup(*equations), animations, duration
 

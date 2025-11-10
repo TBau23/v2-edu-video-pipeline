@@ -1,0 +1,175 @@
+{
+  "title": "Newton's First Law Explained with a Hockey Puck",
+  "topic": "Understanding Newton's First Law of Motion through a practical example involving a hockey puck.",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Imagine you're playing hockey. You hit the puck across the ice, and it keeps sliding effortlessly. But why does it keep moving?",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "hockey_puck_sliding",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "start_pos": [
+              -4,
+              0,
+              0
+            ],
+            "end_pos": [
+              4,
+              0,
+              0
+            ],
+            "velocity": 2.0,
+            "show_motion_lines": true
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Engage viewers with a relatable scenario and introduce the phenomenon of motion.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "This is an example of Newton's First Law. An object in motion stays in motion unless acted upon by an external force.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's First Law",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        },
+        {
+          "type": "text",
+          "content": "An object in motion stays in motion unless acted upon by an external force.",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "bottom",
+          "params": {
+            "font_size": 32,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "Clearly state Newton's First Law and provide a high-level understanding.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation",
+      "narration": "In mathematical terms, if no net force acts on an object, its velocity remains constant.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F_{net} = 0 \\Rightarrow v = \\text{constant}",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Present the mathematical representation of Newton's First Law.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Let's see this in action. As the puck slides, there are minimal forces acting on it, allowing it to glide smoothly. But if you apply a force, like a stick hitting it, the motion changes.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "hockey_puck_sliding",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "start_pos": [
+              -4,
+              0,
+              0
+            ],
+            "end_pos": [
+              0,
+              0,
+              0
+            ],
+            "velocity": 2.0,
+            "show_motion_lines": true
+          }
+        },
+        {
+          "type": "animation",
+          "content": "hockey_puck_sliding",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "start_pos": [
+              0,
+              0,
+              0
+            ],
+            "end_pos": [
+              4,
+              0,
+              0
+            ],
+            "velocity": 3.0,
+            "show_motion_lines": true,
+            "show_forces": true
+          }
+        }
+      ],
+      "estimated_duration": 15.0,
+      "purpose": "Illustrate Newton's First Law with specific examples of forces affecting motion.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "So, next time you watch a hockey game, remember Newton's First Law. It's not just about hockey; it's a fundamental principle that explains motion in our everyday lives.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's First Law in Everyday Life",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Summarize the key takeaway and connect the concept to real-world applications.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain Newton's First Law using a hockey puck",
+  "style_profile": "default"
+}

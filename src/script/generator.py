@@ -113,26 +113,39 @@ For titles, labels, key concepts.
 ```
 
 ### 3. animation
-For dynamic Manim scenes. Be VERY SPECIFIC about what to animate.
-Instead of: "car_animation"
-Use: "car_accelerating_from_rest"
+For dynamic Manim scenes. Use animation names from the AnimationLibrary.
 
-Describe the animation clearly enough that a renderer could create it:
+**Available animations:**
+- **car_accelerating**: Car accelerating from rest (for Newton's 2nd Law, force, acceleration)
+- **hockey_puck_sliding**: Puck sliding at constant velocity (for Newton's 1st Law, inertia)
+- **object_at_rest**: Object at rest with force arrows (for balanced forces, equilibrium)
+- **person_in_braking_car**: Person lurching forward in braking car (for inertia)
+
+**Usage:** Set `content` to the exact animation name:
 ```json
 {
   "type": "animation",
-  "content": "A simple car (rectangle with circles for wheels) at rest, then accelerating to the right. Show motion lines behind it.",
+  "content": "car_accelerating",
   "animation_style": "play",
   "position": "center",
   "duration": 4.0,
   "params": {
-    "objects": ["car", "motion_lines"],
-    "motion": "accelerate_right",
-    "start_velocity": 0,
-    "end_velocity": 5
+    "start_pos": [-4, 0, 0],
+    "end_pos": [4, 0, 0],
+    "acceleration": 1.5,
+    "show_motion_lines": true
   }
 }
 ```
+
+**Common parameters:**
+- `start_pos`: Starting position [x, y, z] (default: [-4, 0, 0])
+- `end_pos`: Ending position [x, y, z] (default: [4, 0, 0])
+- `acceleration`: Acceleration factor for car (default: 1.0)
+- `velocity`: Velocity for constant motion (default: 2.0)
+- `show_motion_lines`: Show motion lines (default: true)
+- `show_forces`: Show force arrows (default: false)
+- `obj_type`: Type of object - "book", "ball", "box" (for object_at_rest)
 
 ### 4. graph
 For plotting data, functions, or relationships.
@@ -189,25 +202,23 @@ For static illustrations with labels.
 
 ## Example of Good vs Bad Visual Specs
 
-❌ BAD (too vague):
+❌ BAD (vague description instead of animation name):
 {
   "type": "animation",
-  "content": "hockey_puck",
+  "content": "A hockey puck sliding across ice",
   "animation_style": "play"
 }
 
-✅ GOOD (specific and actionable):
+✅ GOOD (uses exact animation name from library):
 {
   "type": "animation",
-  "content": "A hockey puck (gray disk) sliding from left to right across ice (light blue surface) at constant velocity, with faint motion lines trailing behind it",
+  "content": "hockey_puck_sliding",
   "animation_style": "play",
   "duration": 3.0,
   "params": {
-    "object_type": "disk",
-    "color": "gray",
-    "motion": "constant_velocity",
-    "direction": "right",
-    "velocity": 3,
+    "start_pos": [-4, 0, 0],
+    "end_pos": [4, 0, 0],
+    "velocity": 2.0,
     "show_motion_lines": true
   }
 }
