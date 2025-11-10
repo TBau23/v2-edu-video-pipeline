@@ -1,0 +1,112 @@
+{
+  "title": "Understanding Newton's First Law",
+  "topic": "Explaining Newton's First Law of Motion using a simple puck",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Have you ever noticed how a hockey puck glides smoothly across the ice? This simple motion can help us understand Newton's First Law of Motion.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A gray circle representing a hockey puck sliding smoothly from left to right at constant speed",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "Introduce Newton's First Law with a relatable scenario involving a hockey puck.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "Newton's First Law states that an object in motion stays in motion unless acted upon by an external force.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's First Law: An object in motion stays in motion...",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Provide a high-level explanation of Newton's First Law.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation_formula",
+      "narration": "This can be represented mathematically. If no force acts on an object, its velocity remains constant.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "\\vec{v} = \\text{constant} \\quad \\text{if} \\quad \\Sigma \\vec{F} = 0",
+          "animation_style": "write",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Present the mathematical representation of Newton's First Law.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Imagine a puck on ice. It continues to move in a straight line at constant speed. But if a player hits the puck, it changes direction.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A gray circle representing a puck moving right at constant speed, then a red circle representing a player's stick hits it, causing it to change direction",
+          "animation_style": "play",
+          "duration": 6.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 15.0,
+      "purpose": "Illustrate Newton's First Law using a practical example.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "So next time you watch a hockey game, remember, the puck's motion is a perfect example of Newton's First Law in action.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's First Law in Action!",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "bottom",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Summarize the key takeaway and connect it to real-world observations.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain Newton's First Law with a simple puck",
+  "style_profile": "default"
+}

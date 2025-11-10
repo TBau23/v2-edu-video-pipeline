@@ -1,0 +1,109 @@
+{
+  "title": "Understanding Newton's First Law Through a Sliding Object",
+  "topic": "Explaining Newton's First Law of Motion using the example of a sliding object",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Have you ever noticed how a puck slides effortlessly across an ice rink? This simple observation is a perfect example of Newton's First Law of Motion.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A gray circle representing a hockey puck sliding smoothly from left to right across a blue surface",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "Introduce the topic using a relatable real-world scenario",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "Newton's First Law states that an object at rest stays at rest, and an object in motion stays in motion at a constant velocity unless acted upon by a net external force.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's First Law",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Clearly state the main concept of Newton's First Law",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation_formula",
+      "narration": "This law is often expressed with the equation F equals zero when no net force is present, indicating constant velocity or rest.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F_{net} = 0 \\Rightarrow v = \\text{constant} \\text{ or } v = 0",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Introduce the mathematical representation of the law",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Let's look at a simple example: imagine a hockey puck sliding on ice. Initially, it moves at a constant speed because there's minimal friction acting on it.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A gray circle representing a hockey puck sliding from left to right at a constant speed, with arrows indicating negligible friction",
+          "animation_style": "play",
+          "duration": 5.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 15.0,
+      "purpose": "Provide a concrete example to build intuition about the concept",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "In conclusion, Newton's First Law helps us understand motion in everyday life, explaining why objects like hockey pucks maintain their motion without additional forces.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A gray circle representing a hockey puck gliding smoothly, with text overlay 'Constant Motion'",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Summarize the key takeaway and real-world applications",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain Newton's First Law with a sliding object",
+  "style_profile": "default"
+}

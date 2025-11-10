@@ -113,39 +113,57 @@ For titles, labels, key concepts.
 ```
 
 ### 3. animation
-For dynamic Manim scenes. Use animation names from the AnimationLibrary.
+For dynamic Manim scenes. Describe what should be animated clearly and simply.
 
-**Available animations:**
-- **car_accelerating**: Car accelerating from rest (for Newton's 2nd Law, force, acceleration)
-- **hockey_puck_sliding**: Puck sliding at constant velocity (for Newton's 1st Law, inertia)
-- **object_at_rest**: Object at rest with force arrows (for balanced forces, equilibrium)
-- **person_in_braking_car**: Person lurching forward in braking car (for inertia)
+**IMPORTANT - Keep animations SIMPLE**:
+- Use basic geometric shapes (Circle, Square, Rectangle)
+- A car = just a Rectangle
+- A person = just a Circle
+- A ball = just a Circle
+- Don't try to create complex realistic objects
+- Abstract geometric shapes are BETTER for education
 
-**Usage:** Set `content` to the exact animation name:
+**Guidelines for descriptions**:
+- Be specific about the motion and what viewers should see
+- Mention colors for visual clarity
+- Describe simple, clear movements
+- Keep objects as simple geometric shapes
+
+**Good examples**:
 ```json
 {
   "type": "animation",
-  "content": "car_accelerating",
+  "content": "A blue rectangle representing a car moving from left to right, speeding up as it goes",
   "animation_style": "play",
   "position": "center",
   "duration": 4.0,
-  "params": {
-    "start_pos": [-4, 0, 0],
-    "end_pos": [4, 0, 0],
-    "acceleration": 1.5,
-    "show_motion_lines": true
-  }
+  "params": {}
 }
 ```
 
-**Common parameters:**
-- `start_pos`: Starting position [x, y, z] (default: [-4, 0, 0])
-- `end_pos`: Ending position [x, y, z] (default: [4, 0, 0])
-- `acceleration`: Acceleration factor for car (default: 1.0)
-- `velocity`: Velocity for constant motion (default: 2.0)
-- `show_motion_lines`: Show motion lines (default: true)
-- `show_forces`: Show force arrows (default: false)
-- `obj_type`: Type of object - "book", "ball", "box" (for object_at_rest)
+```json
+{
+  "type": "animation",
+  "content": "A gray circle representing a hockey puck sliding smoothly from left to right at constant speed",
+  "animation_style": "play",
+  "position": "center",
+  "duration": 3.0,
+  "params": {}
+}
+```
+
+```json
+{
+  "type": "animation",
+  "content": "Two circles colliding - a red circle moving from left hits a stationary blue circle on the right, then both move apart",
+  "animation_style": "play",
+  "position": "center",
+  "duration": 4.0,
+  "params": {}
+}
+```
+
+**Remember**: Simple shapes, clear motion, specific colors
 
 ### 4. graph
 For plotting data, functions, or relationships.
@@ -168,23 +186,22 @@ For plotting data, functions, or relationships.
 ```
 
 ### 5. diagram
-For static illustrations with labels.
+**AVOID USING DIAGRAMS** - The diagram renderer is not yet fully implemented. Use simple text or animations instead.
+
+If you MUST use a diagram, keep it extremely simple:
 ```json
 {
-  "type": "diagram",
-  "content": "free body diagram of book on table",
+  "type": "text",
+  "content": "Force Diagram: Weight (down) vs Normal Force (up)",
   "animation_style": "fade",
   "position": "center",
   "params": {
-    "objects": ["book", "table"],
-    "forces": [
-      {"name": "Weight", "direction": "down", "magnitude": "mg"},
-      {"name": "Normal", "direction": "up", "magnitude": "N"}
-    ],
-    "labels": true
+    "font_size": 32
   }
 }
 ```
+
+Better approach: Use animation type with simple shapes to show concepts instead of diagrams.
 
 ## Timing Guidelines
 - **Narration pace**: ~150 words per minute (2.5 words/second)
@@ -202,25 +219,36 @@ For static illustrations with labels.
 
 ## Example of Good vs Bad Visual Specs
 
-❌ BAD (vague description instead of animation name):
+❌ BAD (too vague, not specific about shapes or motion):
 {
   "type": "animation",
-  "content": "A hockey puck sliding across ice",
+  "content": "A hockey puck",
   "animation_style": "play"
 }
 
-✅ GOOD (uses exact animation name from library):
+❌ BAD (trying to be realistic with complex details):
 {
   "type": "animation",
-  "content": "hockey_puck_sliding",
+  "content": "A detailed car with visible engine, chrome bumpers, spinning wheels with treads, and exhaust smoke trailing behind",
+  "animation_style": "play"
+}
+
+✅ GOOD (simple geometric shape with clear motion and color):
+{
+  "type": "animation",
+  "content": "A blue rectangle representing a car accelerating smoothly from left to right",
   "animation_style": "play",
   "duration": 3.0,
-  "params": {
-    "start_pos": [-4, 0, 0],
-    "end_pos": [4, 0, 0],
-    "velocity": 2.0,
-    "show_motion_lines": true
-  }
+  "params": {}
+}
+
+✅ GOOD (specific, simple, clear):
+{
+  "type": "animation",
+  "content": "A gray circle representing a hockey puck sliding at constant speed from left to right",
+  "animation_style": "play",
+  "duration": 3.0,
+  "params": {}
 }
 """
 

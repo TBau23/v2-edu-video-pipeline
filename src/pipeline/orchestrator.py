@@ -87,7 +87,7 @@ class VideoPipeline:
 
             # Stage 3: Render visuals
             visual_paths = self._stage_visual_rendering(
-                script, audio_segments, workspace, style_preset
+                script, audio_segments, workspace, style_preset, openai_key
             )
 
             # Stage 4: Assemble video
@@ -190,7 +190,8 @@ class VideoPipeline:
         script: Script,
         audio_segments: list[AudioSegment],
         workspace: Path,
-        style_preset: str
+        style_preset: str,
+        openai_key: Optional[str]
     ) -> list[Path]:
         """Stage 3: Render visuals for each Act."""
         logger.info("")
@@ -203,7 +204,8 @@ class VideoPipeline:
         renderer = VisualRenderer(
             style=style,
             output_dir=visuals_dir,
-            quality="medium_quality"  # Can be configurable later
+            quality="medium_quality",  # Can be configurable later
+            openai_key=openai_key  # For LLM animation generation
         )
 
         visual_paths = []

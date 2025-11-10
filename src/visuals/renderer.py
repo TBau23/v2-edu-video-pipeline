@@ -23,8 +23,7 @@ from src.primitives.models import Act, VisualSpec, AudioSegment
 from src.style.config import StyleConfig
 from src.visuals.executor import SceneExecutor
 from src.visuals.timing import VisualTimingCalculator, SyncPoint
-from src.visuals.animations import AnimationLibrary
-from src.visuals.params import convert_params, merge_params_with_defaults
+# Note: generate_animation_scene is imported inside _render_animation to avoid circular imports
 
 logger = logging.getLogger(__name__)
 
@@ -46,18 +45,26 @@ class VisualRenderer:
     - Timing is controlled to match audio duration
     """
 
-    def __init__(self, style: StyleConfig, output_dir: Path, quality: str = "medium_quality"):
+    def __init__(
+        self,
+        style: StyleConfig,
+        output_dir: Path,
+        quality: str = "medium_quality",
+        openai_key: Optional[str] = None
+    ):
         """Initialize renderer.
 
         Args:
             style: StyleConfig to use for consistent styling
             output_dir: Directory to save rendered videos
             quality: Render quality ('low_quality', 'medium_quality', 'high_quality')
+            openai_key: OpenAI API key for LLM animation generation
         """
         self.style = style
         self.output_dir = output_dir
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.quality = quality
+        self.openai_key = openai_key
 
         # Create executor for rendering
         self.executor = SceneExecutor(output_dir, quality=quality)
@@ -191,6 +198,9 @@ class VisualRenderer:
         """
         style = self.style
         visuals = act.visuals
+        openai_key = self.openai_key  # Capture for use in nested Scene class
+        output_dir = self.output_dir  # Capture for use in nested Scene class
+        quality = self.quality  # Capture for use in nested Scene class
 
         # Calculate timing using sync points (audio-aware if available)
         timing_calc = VisualTimingCalculator()
@@ -313,58 +323,55 @@ class VisualRenderer:
                 #     self.play(Create(plot), run_time=duration * 0.5)
 
             def _render_animation(self, visual: VisualSpec, duration: float):
-                """Render a custom animation from the AnimationLibrary.
+                """Render animation using LLM generation.
 
-                Looks up the animation by name, converts parameters, and renders it.
+                Generates inline Manim code and executes it directly in this scene.
                 """
-                anim_name = visual.content
+                description = visual.content
+                logger.info(f"Generating LLM animation: {description[:50]}...")
 
-                # Try to get animation from library
                 try:
-                    anim_func = AnimationLibrary.get_animation(anim_name)
-                except KeyError:
-                    # Animation not found, show placeholder
-                    logger.warning(f"Animation not found: {anim_name}")
-                    placeholder = Text(
-                        f"[Animation not found: {anim_name}]",
-                        font_size=24,
-                        color=style.colors.secondary
+                    # Generate inline animation code
+                    from src.visuals.llm_animator import generate_animation_scene
+                    code = generate_animation_scene(
+                        description=description,
+                        duration=duration,
+                        api_key=openai_key
                     )
-                    placeholder = self._apply_position(placeholder, visual.position)
-                    self.play(FadeIn(placeholder), run_time=duration * 0.2)
-                    self.wait(duration * 0.6)
-                    self.play(FadeOut(placeholder), run_time=duration * 0.2)
-                    return
 
-                # Convert parameters from VisualSpec format to Python types
-                converted_params = convert_params(visual.params)
-                params = merge_params_with_defaults(converted_params, duration)
+                    # Execute code directly in this scene's context
+                    # The code should use `self.play()`, `self.wait()`, etc.
+                    logger.debug(f"Executing inline animation code:\n{code}")
 
-                # Call animation function
-                try:
-                    mobject, animations, actual_duration = anim_func(**params)
+                    # Import Manim objects that the generated code might use
+                    from manim import Circle, Square, Rectangle, Dot, Arrow, Line
+                    from manim import FadeIn, FadeOut, Create, Write, Transform
+                    from manim import UP, DOWN, LEFT, RIGHT, ORIGIN
+                    from manim import BLUE, RED, GREEN, YELLOW, ORANGE, PURPLE, PINK
+                    from manim import GRAY, DARK_GRAY, LIGHT_GRAY, WHITE, BLACK
 
-                    # Apply positioning if specified
-                    if visual.position and visual.position != "center":
-                        mobject = self._apply_position(mobject, visual.position)
+                    # Execute the generated code in this scene's context
+                    exec(code, {'self': self, '__builtins__': __builtins__,
+                                'Circle': Circle, 'Square': Square, 'Rectangle': Rectangle,
+                                'Dot': Dot, 'Arrow': Arrow, 'Line': Line,
+                                'FadeIn': FadeIn, 'FadeOut': FadeOut, 'Create': Create,
+                                'Write': Write, 'Transform': Transform,
+                                'UP': UP, 'DOWN': DOWN, 'LEFT': LEFT, 'RIGHT': RIGHT, 'ORIGIN': ORIGIN,
+                                'BLUE': BLUE, 'RED': RED, 'GREEN': GREEN, 'YELLOW': YELLOW,
+                                'ORANGE': ORANGE, 'PURPLE': PURPLE, 'PINK': PINK,
+                                'GRAY': GRAY, 'DARK_GRAY': DARK_GRAY, 'LIGHT_GRAY': LIGHT_GRAY,
+                                'WHITE': WHITE, 'BLACK': BLACK})
 
-                    # Add mobject to scene
-                    self.add(mobject)
-
-                    # Play animations
-                    for anim in animations:
-                        if isinstance(anim, (list, tuple)):
-                            # Multiple simultaneous animations
-                            self.play(*anim)
-                        else:
-                            # Single animation
-                            self.play(anim)
+                    logger.info(f"✓ LLM animation executed successfully")
 
                 except Exception as e:
-                    # Animation function failed, show error placeholder
-                    logger.error(f"Animation {anim_name} failed: {e}", exc_info=True)
+                    # Animation generation failed, show error placeholder
+                    logger.error(f"LLM animation failed: {e}")
+                    import traceback
+                    logger.debug(f"Traceback:\n{traceback.format_exc()}")
+
                     placeholder = Text(
-                        f"[Animation error: {anim_name}]",
+                        f"[Animation error]",
                         font_size=24,
                         color=style.colors.secondary
                     )

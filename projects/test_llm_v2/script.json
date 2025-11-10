@@ -1,0 +1,145 @@
+{
+  "title": "Understanding Newton's First Law with a Sliding Object",
+  "topic": "An exploration of Newton's First Law of Motion through the example of a sliding object.",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Imagine you're at an ice rink. You give a gentle push to a hockey puck. It slides smoothly across the ice. But what keeps it moving?",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A gray circle representing a hockey puck slides smoothly from left to right on a blue background, representing the ice rink.",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Hook the viewer with a relatable scenario to introduce the concept of motion.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "This is Newton's First Law of Motion. It states that an object in motion stays in motion unless acted upon by an external force.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's First Law of Motion",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        },
+        {
+          "type": "text",
+          "content": "An object in motion stays in motion unless acted upon by an external force.",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "font_size": 32,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "State the main concept clearly for high-level understanding.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation",
+      "narration": "In mathematical terms, force equals mass times acceleration, F equals ma. When no force acts, acceleration is zero.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F = ma",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Present the mathematical representation of Newton's First Law.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Let's see examples. On ice, the puck keeps sliding because there is minimal friction. Contrast this with a puck on grass, which quickly stops due to higher friction.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A gray circle representing a hockey puck slides smoothly across a blue surface with minimal friction.",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        },
+        {
+          "type": "animation",
+          "content": "A gray circle representing a hockey puck moves a short distance on green grass and stops, showing the effect of friction.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 15.0,
+      "purpose": "Provide concrete examples to build intuition and connect back to the core concept.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "Understanding Newton's First Law helps us predict motion. It's why seatbelts are essential—they provide the external force to stop passengers during a sudden stop.",
+      "visuals": [
+        {
+          "type": "diagram",
+          "content": "Illustration of a car with passengers, showing seatbelts acting as external force during a sudden stop.",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car",
+              "passenger"
+            ],
+            "forces": [
+              {
+                "name": "Seatbelt Force",
+                "direction": "backward",
+                "magnitude": "F"
+              }
+            ],
+            "labels": true
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "Summarize the key takeaway and connect to real-world applications.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain Newton's First Law with a sliding object",
+  "style_profile": "default"
+}
