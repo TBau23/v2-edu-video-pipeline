@@ -38,6 +38,17 @@ class VisualSpec(BaseModel):
         description="How long this visual should animate (seconds). None means auto-calculate."
     )
 
+    # Timing and synchronization
+    trigger_words: Optional[List[str]] = Field(
+        default=None,
+        description="Words in narration that trigger this visual (for audio sync)"
+    )
+
+    lead_time: Optional[float] = Field(
+        default=0.5,
+        description="Show visual this many seconds BEFORE trigger word (for anticipation)"
+    )
+
     # Positioning and layout
     position: Optional[str] = Field(
         default="center",

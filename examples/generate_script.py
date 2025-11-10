@@ -9,10 +9,14 @@ This demonstrates the script generation pipeline:
 
 import sys
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
+
+# Load environment variables from .env file
+load_dotenv(project_root / ".env")
 
 from src.script.generator import generate_script
 from src.utils.workspace import create_project
@@ -26,11 +30,11 @@ def main():
     Create an educational video explaining Newton's First Law of Motion.
 
     The video should:
-    - Start with a relatable example (car braking, feeling pushed forward)
+    - Motivate the viewer with a relatable example
     - Explain the concept of inertia clearly
-    - Show the mathematical formulation (F=ma, when F=0)
-    - Give 3 concrete examples (hockey puck, person in car, book on table)
-    - Conclude with real-world applications (seatbelts, airbags)
+    - Show the mathematical formulation (F=ma, when F=0) and explain the components
+    - Build up understanding of the physics
+    - Conclude with real-world applications
 
     Keep it engaging and suitable for high school students.
     Target duration: 60-90 seconds.

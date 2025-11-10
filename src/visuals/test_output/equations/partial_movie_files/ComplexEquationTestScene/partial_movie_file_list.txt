@@ -1,0 +1,3 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/src/visuals/test_output/equations/partial_movie_files/ComplexEquationTestScene/1185818338_1984730078_223132457.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/src/visuals/test_output/equations/partial_movie_files/ComplexEquationTestScene/624642324_1839128356_2676041407.mp4'

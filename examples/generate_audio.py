@@ -9,14 +9,18 @@ This demonstrates the audio synthesis pipeline:
 
 import sys
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
+# Load environment variables from .env file
+load_dotenv(project_root / ".env")
+
 from src.audio.synthesizer import AudioSynthesizer
 from src.utils.workspace import load_project, list_projects
-from src.utils.io import save_json
+from src.utils.io import save_json, save_pretty_json
 from src.style.config import StyleConfig
 
 
@@ -83,7 +87,7 @@ def main():
             "total_duration": sum(seg.duration for seg in audio_segments)
         }
 
-        save_json(timing_data, workspace.metadata_dir / "audio_timing.json")
+        save_pretty_json(timing_data, workspace.metadata_dir / "audio_timing.json")
 
         # Summary
         print("\n" + "="*60)

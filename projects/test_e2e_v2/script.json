@@ -1,0 +1,193 @@
+{
+  "title": "Understanding F = ma Through a Car Example",
+  "topic": "Exploring Newton's Second Law of Motion using a car as a relatable example.",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Imagine you're driving a car. You press the gas pedal, and the car accelerates forward. But have you ever wondered what determines how quickly the car speeds up?",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A simple car (rectangle with circles for wheels) is shown on a road. The car is initially at rest and then begins to accelerate forward as a foot presses the gas pedal.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car",
+              "road",
+              "foot"
+            ],
+            "motion": "accelerate_right",
+            "start_velocity": 0,
+            "end_velocity": 10
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "Introduce the concept of acceleration and engage the viewer by relating it to driving a car.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "This is explained by Newton's Second Law of Motion: Force equals mass times acceleration, or F equals m a.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's Second Law of Motion",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        },
+        {
+          "type": "equation",
+          "content": "F = ma",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Introduce Newton's Second Law with its mathematical representation.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation_components",
+      "narration": "In this equation, F stands for force, m represents mass, and a is acceleration.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "F = Force, m = Mass, a = Acceleration",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "bottom",
+          "params": {
+            "font_size": 36,
+            "color": "accent"
+          }
+        },
+        {
+          "type": "diagram",
+          "content": "A labeled diagram of a car with arrows indicating force and acceleration.",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car"
+            ],
+            "forces": [
+              {
+                "name": "Force",
+                "direction": "right",
+                "magnitude": "F"
+              }
+            ],
+            "labels": true
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Clarify the components of the equation using a visual illustration.",
+      "notes": null
+    },
+    {
+      "id": "act_4_example",
+      "narration": "Let's say our car has a mass of 1000 kg and accelerates at 2 meters per second squared. What is the force applied?",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F = 1000 \\times 2",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        },
+        {
+          "type": "equation",
+          "content": "F = 2000 \\text{ N}",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        },
+        {
+          "type": "animation",
+          "content": "The car (rectangle with wheels) accelerates to the right with motion lines and a force arrow above it labeled '2000 N'.",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car",
+              "force_arrow"
+            ],
+            "motion": "accelerate_right",
+            "force_label": "2000 N"
+          }
+        }
+      ],
+      "estimated_duration": 25.0,
+      "purpose": "Provide a concrete example to illustrate how the equation F = ma is applied.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "So, the next time you accelerate your car, remember it's Newton's Second Law in action. This principle is fundamental in engineering, space travel, and understanding everyday forces.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A montage of various applications: a rocket launching, a satellite orbiting, and a car accelerating.",
+          "animation_style": "play",
+          "duration": 6.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "objects": [
+              "rocket",
+              "satellite",
+              "car"
+            ],
+            "motion": "various_applications"
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "Summarize the concept and highlight its importance in various applications.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain F equals m a with a car",
+  "style_profile": "default"
+}

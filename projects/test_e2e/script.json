@@ -1,0 +1,139 @@
+{
+  "title": "Understanding F = ma with a Car",
+  "topic": "Explaining Newton's Second Law of Motion using a car example",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Imagine you're driving a car. Have you ever wondered why it accelerates faster when you press the gas pedal harder? Today, we'll explore the physics behind this.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A car (rectangle with circles for wheels) at rest, then accelerating to the right as the gas pedal is pressed.",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car",
+              "gas_pedal"
+            ],
+            "motion": "accelerate_right",
+            "start_velocity": 0,
+            "end_velocity": 5
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "Hook viewers by connecting to a familiar scenario and introducing the topic of acceleration.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "This phenomenon is explained by Newton's Second Law of Motion. It states that the force applied to an object is equal to its mass times its acceleration.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's Second Law of Motion",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Introduce the concept of Newton's Second Law in a straightforward manner.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation_formula",
+      "narration": "Mathematically, this is represented by the equation F equals m a.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F = ma",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Present the mathematical equation and establish its components.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Let's see this in action. If our car has a mass of 1000 kg and we apply a force of 2000 N, what will its acceleration be?",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "a = \\frac{F}{m} = \\frac{2000}{1000} = 2 \\, \\text{m/s}^2",
+          "animation_style": "write",
+          "duration": 5.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 36
+          }
+        },
+        {
+          "type": "animation",
+          "content": "The same car now accelerating to the right with an indicated acceleration of 2 m/s^2.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car"
+            ],
+            "motion": "accelerate_right",
+            "acceleration": 2
+          }
+        }
+      ],
+      "estimated_duration": 20.0,
+      "purpose": "Provide a concrete example to illustrate how the equation is applied.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "In summary, the acceleration of an object depends on its mass and the force applied to it. Understanding this principle helps us design better vehicles and safety features.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Key Takeaway: Acceleration = Force / Mass",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "bottom",
+          "params": {
+            "font_size": 36,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Reinforce the key takeaway and connect the concept to real-world applications.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain F equals m a with a car",
+  "style_profile": "default"
+}

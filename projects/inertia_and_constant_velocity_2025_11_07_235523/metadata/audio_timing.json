@@ -1,0 +1,35 @@
+{
+  "acts": [
+    {
+      "act_id": "act_1_motivation",
+      "duration": 13.944,
+      "word_count": 42,
+      "has_timestamps": true
+    },
+    {
+      "act_id": "act_2_concept",
+      "duration": 13.08,
+      "word_count": 38,
+      "has_timestamps": true
+    },
+    {
+      "act_id": "act_3_equation",
+      "duration": 9.288,
+      "word_count": 27,
+      "has_timestamps": true
+    },
+    {
+      "act_id": "act_4_examples",
+      "duration": 17.928,
+      "word_count": 54,
+      "has_timestamps": true
+    },
+    {
+      "act_id": "act_5_conclusion",
+      "duration": 16.44,
+      "word_count": 42,
+      "has_timestamps": true
+    }
+  ],
+  "total_duration": 70.68
+}

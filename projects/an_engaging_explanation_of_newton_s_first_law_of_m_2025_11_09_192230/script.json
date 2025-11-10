@@ -1,0 +1,171 @@
+{
+  "title": "Understanding Newton's First Law of Motion",
+  "topic": "An engaging explanation of Newton's First Law of Motion, focusing on inertia and its real-world applications.",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Imagine you're in a car that suddenly stops. You feel yourself lurching forward. Why does this happen?",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A person sitting in a car that abruptly brakes. The person leans forward, showing the continued motion despite the car stopping.",
+          "animation_style": "play",
+          "duration": 5.0,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car",
+              "person"
+            ],
+            "motion": "brake",
+            "person_motion": "lean_forward"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Hook viewers with a relatable scenario, introducing the concept of inertia.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "This is Newton's First Law of Motion, also known as the law of inertia. It states that an object in motion stays in motion unless acted upon by an outside force.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's First Law of Motion",
+          "animation_style": "fade",
+          "duration": null,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        },
+        {
+          "type": "text",
+          "content": "An object in motion stays in motion unless acted upon by an outside force.",
+          "animation_style": "write",
+          "duration": null,
+          "position": "center",
+          "params": {
+            "font_size": 32,
+            "color": "primary"
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "Explain the core concept of inertia in simple terms.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation",
+      "narration": "Mathematically, when no force acts on an object, the net force F is zero, meaning its acceleration a is also zero.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F = ma \\quad \\text{when} \\quad F = 0, \\quad a = 0",
+          "animation_style": "write",
+          "duration": 4.0,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Introduce the mathematical formulation of Newton's First Law.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Let's see some examples. A hockey puck glides across the ice until friction slows it down. In a car, seatbelts prevent you from continuing forward when the car stops. A book on a table stays put until pushed.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A hockey puck sliding smoothly across ice, gradually slowing to a stop.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "position": "center",
+          "params": {
+            "object_type": "disk",
+            "color": "gray",
+            "motion": "decelerate",
+            "show_motion_lines": true
+          }
+        },
+        {
+          "type": "animation",
+          "content": "A person in a car being held back by a seatbelt as the car stops.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car",
+              "person",
+              "seatbelt"
+            ],
+            "motion": "brake",
+            "seatbelt_action": "restrain"
+          }
+        },
+        {
+          "type": "diagram",
+          "content": "A free body diagram of a book resting on a table.",
+          "animation_style": "fade",
+          "duration": null,
+          "position": "right",
+          "params": {
+            "objects": [
+              "book",
+              "table"
+            ],
+            "forces": [
+              {
+                "name": "Weight",
+                "direction": "down",
+                "magnitude": "mg"
+              },
+              {
+                "name": "Normal",
+                "direction": "up",
+                "magnitude": "N"
+              }
+            ],
+            "labels": true
+          }
+        }
+      ],
+      "estimated_duration": 20.0,
+      "purpose": "Provide concrete examples to illustrate the concept of inertia.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion",
+      "narration": "Newton's First Law explains why seatbelts and airbags are crucial in vehicles. They provide the force needed to change our motion, keeping us safe.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A car crash test showing airbags deploying to protect passengers during a collision.",
+          "animation_style": "play",
+          "duration": 5.0,
+          "position": "center",
+          "params": {
+            "objects": [
+              "car",
+              "airbags"
+            ],
+            "motion": "deploy_airbags",
+            "impact": "collision"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Connect the concept of inertia to practical safety applications in the real world.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Create an educational video explaining Newton's First Law of Motion.",
+  "style_profile": "default"
+}

@@ -76,12 +76,22 @@ class SceneExecutor:
             scene = scene_class()
             scene.render()
 
-            # Find the output file (Manim puts it in a specific location)
-            # This is simplified - real version needs to find Manim's output
+            # Manim outputs to: output_dir / output_name.mp4
+            # Verify file exists
+            if not output_file.exists():
+                # Try to find it in media directory
+                media_file = self.output_dir / "media" / "videos" / f"{output_name}.mp4"
+                if media_file.exists():
+                    output_file = media_file
+                else:
+                    raise FileNotFoundError(f"Rendered file not found at {output_file} or {media_file}")
+
             return output_file
 
         except Exception as e:
             print(f"Rendering failed: {e}")
+            import traceback
+            traceback.print_exc()
             raise
 
     def render_scene_via_cli(

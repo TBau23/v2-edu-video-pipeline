@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/src/visuals/test_output/composition/partial_movie_files/MultiTextScene/1185818338_698791387_223132457.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/src/visuals/test_output/composition/partial_movie_files/MultiTextScene/624642324_1754310298_2237447367.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/src/visuals/test_output/composition/partial_movie_files/MultiTextScene/624642324_2311427728_1480363226.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/src/visuals/test_output/composition/partial_movie_files/MultiTextScene/624642324_1754310298_3852989051.mp4'

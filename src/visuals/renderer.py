@@ -16,10 +16,12 @@ from typing import Optional, List
 from dataclasses import dataclass
 
 from manim import Scene, Text, MathTex, Axes, Write, FadeIn, FadeOut, Create, ReplacementTransform
-from manim import config as manim_config
+from manim import config as manim_config, UP, DOWN, LEFT, RIGHT
 
-from src.primitives.models import Act, VisualSpec
+from src.primitives.models import Act, VisualSpec, AudioSegment
 from src.style.config import StyleConfig
+from src.visuals.executor import SceneExecutor
+from src.visuals.timing import VisualTimingCalculator, SyncPoint
 
 
 @dataclass
@@ -39,16 +41,21 @@ class VisualRenderer:
     - Timing is controlled to match audio duration
     """
 
-    def __init__(self, style: StyleConfig, output_dir: Path):
+    def __init__(self, style: StyleConfig, output_dir: Path, quality: str = "medium_quality"):
         """Initialize renderer.
 
         Args:
             style: StyleConfig to use for consistent styling
             output_dir: Directory to save rendered videos
+            quality: Render quality ('low_quality', 'medium_quality', 'high_quality')
         """
         self.style = style
         self.output_dir = output_dir
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.quality = quality
+
+        # Create executor for rendering
+        self.executor = SceneExecutor(output_dir, quality=quality)
 
         # Configure Manim
         self._configure_manim()
@@ -71,29 +78,37 @@ class VisualRenderer:
     def render_act(
         self,
         act: Act,
+        audio: Optional[AudioSegment] = None,
         target_duration: Optional[float] = None
     ) -> RenderResult:
         """Render all visuals for an Act into a single video.
 
         Args:
             act: The Act to render
+            audio: Audio segment with word timestamps (for precise sync)
             target_duration: Target duration in seconds (from audio)
                            If None, uses act.estimated_duration
 
         Returns:
             RenderResult with output path and actual duration
         """
-        duration = target_duration or act.estimated_duration or 10.0
+        # Determine duration
+        if audio:
+            duration = audio.duration
+        elif target_duration:
+            duration = target_duration
+        else:
+            duration = act.estimated_duration or 10.0
 
         # Generate scene class dynamically
-        scene_class = self._create_scene_for_act(act, duration)
+        scene_class = self._create_scene_for_act(act, audio, duration)
 
-        # Render with Manim
-        output_path = self.output_dir / f"{act.id}.mp4"
-
-        # TODO: Actually render the scene
-        # This requires calling Manim's rendering system programmatically
-        # For now, return placeholder
+        # Render with Manim using the executor
+        output_path = self.executor.render_scene(
+            scene_class,
+            output_name=act.id,
+            preview=False
+        )
 
         return RenderResult(
             output_path=output_path,
@@ -101,7 +116,61 @@ class VisualRenderer:
             visual_spec=act.visuals[0] if act.visuals else None
         )
 
-    def _create_scene_for_act(self, act: Act, duration: float) -> type:
+    def _calculate_visual_timings(self, visuals: List[VisualSpec], target_duration: float) -> List[float]:
+        """Calculate duration for each visual based on Act duration.
+
+        Handles:
+        - All explicit durations: use them (scale if sum > target)
+        - Some explicit: fill remaining time with unspecified visuals
+        - No explicit: divide equally
+
+        Args:
+            visuals: List of VisualSpecs
+            target_duration: Total duration for the Act
+
+        Returns:
+            List of durations (one per visual)
+        """
+        if not visuals:
+            return []
+
+        # Count explicit vs implicit durations
+        explicit_durations = [v.duration for v in visuals if v.duration is not None]
+        num_unspecified = len(visuals) - len(explicit_durations)
+
+        if num_unspecified == 0:
+            # All durations specified
+            total_explicit = sum(explicit_durations)
+
+            if total_explicit > target_duration:
+                # Scale down proportionally
+                scale = target_duration / total_explicit
+                return [v.duration * scale for v in visuals]
+            else:
+                # Use as-is (might be shorter than target, that's okay)
+                return [v.duration for v in visuals]
+
+        else:
+            # Some durations missing
+            total_explicit = sum(explicit_durations)
+            remaining_time = max(0, target_duration - total_explicit)
+            time_per_unspecified = remaining_time / num_unspecified if num_unspecified > 0 else 0
+
+            durations = []
+            for v in visuals:
+                if v.duration is not None:
+                    durations.append(v.duration)
+                else:
+                    durations.append(time_per_unspecified)
+
+            return durations
+
+    def _create_scene_for_act(
+        self,
+        act: Act,
+        audio: Optional[AudioSegment],
+        duration: float
+    ) -> type:
         """Create a Manim Scene class for an Act.
 
         This dynamically generates a Scene class with the construct() method
@@ -109,6 +178,7 @@ class VisualRenderer:
 
         Args:
             act: The Act to create a scene for
+            audio: Audio segment with word timestamps (for sync)
             duration: Total duration for the scene
 
         Returns:
@@ -117,14 +187,25 @@ class VisualRenderer:
         style = self.style
         visuals = act.visuals
 
+        # Calculate timing using sync points (audio-aware if available)
+        timing_calc = VisualTimingCalculator()
+        sync_points = timing_calc.calculate_sync_points(visuals, audio, duration)
+
         class ActScene(Scene):
             def construct(self):
-                # Render each visual in sequence
-                current_time = 0
+                # Track current time for wait() calculations
+                scene_time = 0.0
 
-                for visual in visuals:
-                    # Determine visual duration
-                    visual_duration = visual.duration or (duration / len(visuals))
+                for sync_point in sync_points:
+                    # Wait until visual should appear
+                    wait_time = sync_point.start_time - scene_time
+                    if wait_time > 0:
+                        self.wait(wait_time)
+                        scene_time += wait_time
+
+                    # Render the visual
+                    visual = sync_point.visual_spec
+                    visual_duration = sync_point.duration
 
                     # Render based on type
                     if visual.type == "equation":
@@ -138,7 +219,7 @@ class VisualRenderer:
                     elif visual.type == "diagram":
                         self._render_diagram(visual, visual_duration)
 
-                    current_time += visual_duration
+                    scene_time += visual_duration
 
             def _render_equation(self, visual: VisualSpec, duration: float):
                 """Render an equation."""
@@ -261,13 +342,13 @@ class VisualRenderer:
             def _apply_position(self, mobject, position: str):
                 """Apply position to a mobject."""
                 if position == "top":
-                    mobject.to_edge("UP")
+                    mobject.to_edge(UP)
                 elif position == "bottom":
-                    mobject.to_edge("DOWN")
+                    mobject.to_edge(DOWN)
                 elif position == "left":
-                    mobject.to_edge("LEFT")
+                    mobject.to_edge(LEFT)
                 elif position == "right":
-                    mobject.to_edge("RIGHT")
+                    mobject.to_edge(RIGHT)
                 # "center" is default
 
                 return mobject

@@ -34,7 +34,7 @@ You must output a valid JSON object matching this structure:
       "visuals": [
         {
           "type": "equation|graph|animation|diagram|text",
-          "content": "detailed content description",
+          "content": "description to aid generation of manim animations",
           "animation_style": "draw|fade|write|play",
           "position": "center|top|bottom|left|right",
           "duration": 2.0,  // optional, in seconds
