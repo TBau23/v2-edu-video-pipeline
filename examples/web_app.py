@@ -67,7 +67,7 @@ demo = gr.Interface(
         lines=4
     ),
     outputs=gr.Video(
-        label="🎬 Generated Video",
+        label="",
         autoplay=True
     ),
     title="🎓 AI Educational Video Generator",
@@ -77,26 +77,8 @@ demo = gr.Interface(
 
     **⏱️ Note**: Generation takes 3-5 minutes. Please be patient!
     """,
-    article="""
-    ### How it works:
-    1. **Script Generation**: AI writes a detailed educational script
-    2. **Audio Synthesis**: Text-to-speech creates narration
-    3. **Visual Rendering**: Manim generates equations and animations
-    4. **Assembly**: Everything is combined into a final video
-
-    ### Tips:
-    - Be specific (e.g., "Explain photosynthesis with diagrams" instead of just "photosynthesis")
-    - Include examples you want (e.g., "Use a car example for Newton's First Law")
-    - Keep topics focused (one concept per video works best)
-    """,
-    examples=[
-        ["Explain Newton's First Law using a car accelerating on a highway"],
-        ["What is the Pythagorean theorem? Show it with a right triangle example"],
-        ["Explain the concept of momentum using a hockey puck sliding on ice"],
-        ["Describe photosynthesis in simple terms with a diagram of a plant cell"]
-    ],
     cache_examples=False,
-    allow_flagging="never",
+    flagging_mode="never",
     theme=gr.themes.Soft()
 )
 

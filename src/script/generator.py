@@ -113,57 +113,78 @@ For titles, labels, key concepts.
 ```
 
 ### 3. animation
-For dynamic Manim scenes. Describe what should be animated clearly and simply.
+For dynamic Manim scenes in 3Blue1Brown style. Specify WHICH PATTERN to use and describe the progression.
 
-**IMPORTANT - Keep animations SIMPLE**:
-- Use basic geometric shapes (Circle, Square, Rectangle)
-- A car = just a Rectangle
-- A person = just a Circle
-- A ball = just a Circle
-- Don't try to create complex realistic objects
-- Abstract geometric shapes are BETTER for education
+**CRITICAL - Animation Patterns (Choose One)**:
 
-**Guidelines for descriptions**:
-- Be specific about the motion and what viewers should see
-- Mention colors for visual clarity
-- Describe simple, clear movements
-- Keep objects as simple geometric shapes
-
-**Good examples**:
+**Pattern 1: Introduce → Elaborate → Apply**
+Use for: Introducing new concepts
 ```json
 {
   "type": "animation",
-  "content": "A blue rectangle representing a car moving from left to right, speeding up as it goes",
+  "content": "Pattern: Introduce→Elaborate→Apply. Show blue circle (mass), add 'Mass' label above it, then add red arrow from left (force) and animate circle moving right (acceleration)",
   "animation_style": "play",
   "position": "center",
   "duration": 4.0,
-  "params": {}
+  "params": {
+    "pattern": "progressive_disclosure",
+    "colors": {"concept": "BLUE", "force": "RED"}
+  }
 }
 ```
 
+**Pattern 2: Equation → Visual → Example**
+Use for: Explaining formulas with equation-visual correspondence
 ```json
 {
   "type": "animation",
-  "content": "A gray circle representing a hockey puck sliding smoothly from left to right at constant speed",
+  "content": "Pattern: Equation→Visual. Show F=ma equation at top (color F red, m blue, a green). Highlight 'm', show blue circle below. Highlight 'F', add red arrow. Highlight 'a', animate circle moving right.",
   "animation_style": "play",
   "position": "center",
-  "duration": 3.0,
-  "params": {}
+  "duration": 5.0,
+  "params": {
+    "pattern": "equation_visual",
+    "equation_colors": {"F": "RED", "m": "BLUE", "a": "GREEN"}
+  }
 }
 ```
 
+**Pattern 3: Transform Concept**
+Use for: Showing how ideas relate and evolve
 ```json
 {
   "type": "animation",
-  "content": "Two circles colliding - a red circle moving from left hits a stationary blue circle on the right, then both move apart",
+  "content": "Pattern: Transform. Show text 'Objects resist change', morph to 'Newton's First Law', morph to equation 'v = constant when ΣF = 0'",
+  "animation_style": "play",
+  "position": "center",
+  "duration": 3.5,
+  "params": {
+    "pattern": "transform_concept"
+  }
+}
+```
+
+**Pattern 4: Compare & Contrast**
+Use for: Showing differences side-by-side
+```json
+{
+  "type": "animation",
+  "content": "Pattern: Compare. Left side: blue rectangle with 'With Friction' label, moves then slows down. Right side: green rectangle with 'No Friction' label, moves and continues moving.",
   "animation_style": "play",
   "position": "center",
   "duration": 4.0,
-  "params": {}
+  "params": {
+    "pattern": "compare_contrast"
+  }
 }
 ```
 
-**Remember**: Simple shapes, clear motion, specific colors
+**Guidelines**:
+- ALWAYS specify which pattern to use
+- Simple shapes only: Rectangle for car, Circle for ball/mass
+- Specify semantic colors: BLUE=concept, RED=force, GREEN=example, YELLOW=highlight
+- Describe step-by-step progression
+- Mention equation-visual correspondence when relevant
 
 ### 4. graph
 For plotting data, functions, or relationships.
@@ -208,6 +229,34 @@ Better approach: Use animation type with simple shapes to show concepts instead 
 - **Visual timing**: Visuals should appear 0.5-1s BEFORE being mentioned in narration
 - **Pause after equations**: Add 0.8s pause after complex equations appear
 - **Total video**: Aim for 60-90 seconds for most concepts
+
+## Narration Guidelines (TTS-Friendly)
+**IMPORTANT**: Narration will be read by text-to-speech. Follow these rules:
+
+1. **Spell out units completely**:
+   - ✅ "meters per second" NOT ❌ "m/s"
+   - ✅ "kilograms" NOT ❌ "kg"
+   - ✅ "six kilogram meters per second" NOT ❌ "6 kg·m/s"
+
+2. **Spell out numbers in context**:
+   - ✅ "two kilograms" NOT ❌ "2 kg"
+   - ✅ "three meters per second" NOT ❌ "3 m/s"
+   - Small numbers (1-20): spell out
+   - Large numbers: use digits ("100", "1000")
+
+3. **Avoid special symbols**:
+   - NO: · (middle dot), × (times), ² (superscript), → (arrows)
+   - ✅ "times" NOT ❌ "×"
+   - ✅ "squared" NOT ❌ "²"
+
+4. **Use conversational language**:
+   - Natural spoken English
+   - Contractions are OK ("it's", "we'll")
+   - Short, clear sentences
+
+**Good example**: "Let's see an example. A ball with a mass of two kilograms slides at three meters per second. Its momentum is six kilogram meters per second."
+
+**Bad example**: "Let's see an example. A ball of mass 2 kg sliding with a velocity of 3 m/s. Its momentum is 6 kg·m/s."
 
 ## Important Rules
 1. **Be specific with animations**: Don't use vague placeholders. Describe exactly what should be animated.

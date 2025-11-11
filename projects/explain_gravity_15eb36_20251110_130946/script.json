@@ -1,0 +1,147 @@
+{
+  "title": "Understanding Gravity",
+  "topic": "An introduction to the concept of gravity and its effects",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Imagine dropping an apple. It always falls to the ground. But why does this happen? The answer is gravity. Gravity is everywhere, influencing everything. Let's explore how it works.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Introduce→Elaborate→Apply. Show an apple hanging from a tree, then release and animate it falling downwards, labeling the motion as 'Gravity'.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "progressive_disclosure",
+            "colors": {
+              "apple": "RED",
+              "gravity": "YELLOW"
+            }
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "To introduce gravity with a relatable scenario.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "Gravity is a force that pulls objects toward each other. It gives weight to objects and causes them to fall when dropped.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Gravity: The Force of Attraction",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        },
+        {
+          "type": "animation",
+          "content": "Pattern: Transform. Show two circles labeled 'Earth' and 'Moon', with arrows pointing towards each other, labeled 'Gravity'.",
+          "animation_style": "play",
+          "duration": 3.5,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "transform_concept"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "To explain the basic concept of gravity as a force of attraction.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation_formula",
+      "narration": "We can describe gravity with an equation: F equals G times the product of two masses divided by the square of the distance between them.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F = \\frac{G \\cdot m_1 \\cdot m_2}{r^2}",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "To present the mathematical representation of gravity.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Consider Earth and the Moon. The gravitational force keeps the Moon in orbit. On Earth, gravity makes a ball fall when you drop it.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Equation→Visual. Show Earth and Moon with 'F = G times m_1 times m_2 over r squared' at top. Highlight each element as corresponding circles and arrows appear.",
+          "animation_style": "play",
+          "duration": 5.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "equation_visual",
+            "equation_colors": {
+              "F": "YELLOW",
+              "m_1": "BLUE",
+              "m_2": "GREEN",
+              "r": "RED"
+            }
+          }
+        },
+        {
+          "type": "animation",
+          "content": "A gray circle representing a ball falling downwards with a 'Gravity' label, showing the force pulling it down.",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 18.0,
+      "purpose": "To illustrate gravity with examples of the Moon's orbit and a falling ball.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "Gravity is essential for life on Earth. It keeps us grounded and holds the atmosphere in place. Without it, life as we know it would not exist.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Transform. Show a person standing on Earth, morph to a view of Earth with atmosphere, labeled 'Gravity holds us and our atmosphere'.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "transform_concept"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "To summarize gravity's importance and its role in our everyday life.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain gravity",
+  "style_profile": "default"
+}

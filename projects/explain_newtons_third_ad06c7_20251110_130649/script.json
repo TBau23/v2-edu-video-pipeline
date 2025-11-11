@@ -1,0 +1,125 @@
+{
+  "title": "Understanding Newton's Third Law of Motion",
+  "topic": "Explanation of Newton's third law of motion with examples and applications.",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Imagine you're standing on a skateboard, and you push against a wall. What happens? You roll backward. But why?",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Introduce→Elaborate→Apply. Show a person standing on a skateboard next to a wall. Animate the person pushing the wall and the skateboard rolling backward.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "progressive_disclosure",
+            "colors": {
+              "person": "BLUE",
+              "wall": "GRAY",
+              "skateboard": "GREEN"
+            }
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "To introduce the concept of action and reaction forces in a relatable scenario.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "This is Newton's third law of motion. For every action, there is an equal and opposite reaction.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's Third Law: For every action, there is an equal and opposite reaction",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 40,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "To clearly state Newton's third law in simple terms.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation_formula",
+      "narration": "Mathematically, if object A exerts a force on object B, object B exerts a force back on object A of equal magnitude but in the opposite direction.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F_{A on B} = -F_{B on A}",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "To present the mathematical representation of Newton's third law.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Let's look at some examples. First, a rocket launching. The engines push exhaust gases downward, and the rocket moves upward. Second, consider jumping off a boat onto a dock. The boat moves backward as you leap forward.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Equation→Visual. Show rocket on launch pad. Highlight forces with red arrow pointing down for exhaust and blue arrow pointing up for rocket. Then show a person jumping from a boat to a dock, with the boat moving backward.",
+          "animation_style": "play",
+          "duration": 8.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "equation_visual",
+            "equation_colors": {
+              "exhaust": "RED",
+              "rocket": "BLUE"
+            }
+          }
+        }
+      ],
+      "estimated_duration": 20.0,
+      "purpose": "To demonstrate real-world applications of the third law with clear examples.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "Newton's third law is fundamental in understanding forces in nature. It's essential in engineering, sports, and even everyday tasks like walking.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Key Takeaway: Action and Reaction Forces are Everywhere",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "bottom",
+          "params": {
+            "font_size": 36,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "To summarize the importance of Newton's third law and its ubiquitous presence in various fields.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Create an educational video script for the following topic: Explain Newtons third law of motion",
+  "style_profile": "default"
+}

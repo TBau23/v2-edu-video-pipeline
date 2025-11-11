@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/projects/test_deterministic_duration/visuals/partial_movie_files/ActScene/4024718211_2839247343_223132457.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/projects/test_deterministic_duration/visuals/partial_movie_files/ActScene/3197696533_637473985_1352292273.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/projects/test_deterministic_duration/visuals/partial_movie_files/ActScene/3197696533_3362639574_852918015.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/projects/test_deterministic_duration/visuals/partial_movie_files/ActScene/3197696533_2903674410_480675168.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/projects/test_deterministic_duration/visuals/partial_movie_files/ActScene/3197696533_390135386_3803875030.mp4'
+file 'file:/Users/tombauer/workspace/github.com/TBau23/gauntlet/v2-education-vid-gen/projects/test_deterministic_duration/visuals/partial_movie_files/ActScene/3197696533_2903981792_2424230541.mp4'

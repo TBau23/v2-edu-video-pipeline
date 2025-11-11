@@ -10,6 +10,8 @@ python-dotenv>=1.0.0   # For loading .env files
 # Phase 3: Visual Primitives
 pydantic>=2.0.0        # For data validation
 
+# Web interface
+gradio>=4.0.0          # For web UI
+
 # Future phases
 # tenacity>=8.2.0        # For retry logic
-# gradio>=4.0.0          # For UI (Phase 6)

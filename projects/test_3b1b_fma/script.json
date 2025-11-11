@@ -1,0 +1,119 @@
+{
+  "title": "Understanding Newton's Second Law: F = ma",
+  "topic": "A detailed explanation of Newton's Second Law of Motion using the equation F = ma with examples.",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Have you ever wondered how physics explains the way a car accelerates or how a ball is thrown? It all comes down to Newton's Second Law of Motion.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Introduce→Elaborate→Apply. Show a car moving slowly, then rapidly accelerates. Briefly pause before the acceleration.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "progressive_disclosure"
+          }
+        }
+      ],
+      "estimated_duration": 12.0,
+      "purpose": "To intrigue viewers with real-world scenarios that are explained by Newton's Second Law.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "Newton's Second Law states that the force acting on an object is equal to the mass of that object times its acceleration.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Newton's Second Law: F = ma",
+          "animation_style": "fade",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "top",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "To provide a high-level understanding of Newton's Second Law.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation_formula",
+      "narration": "Let's break down the equation F equals m a.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Equation→Visual. Show F=ma equation at top. Highlight 'F' in red, 'm' in blue, and 'a' in green. Then show corresponding visuals: red arrow for force, blue circle for mass, green arrow showing acceleration.",
+          "animation_style": "play",
+          "duration": 5.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "equation_visual",
+            "equation_colors": {
+              "F": "RED",
+              "m": "BLUE",
+              "a": "GREEN"
+            }
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "To explain the components of the equation and their visual representations.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Consider a small ball with a mass of two kilograms that accelerates at three meters per second squared. The force is six newton. Now, imagine a larger box with a mass of five kilograms, accelerating at the same rate. The force is fifteen newton.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Compare. Show two scenarios side-by-side. Left: small blue circle with '2 kg', green arrow showing acceleration, red arrow showing '6 N' force. Right: larger blue square with '5 kg', same green arrow, red arrow showing '15 N' force.",
+          "animation_style": "play",
+          "duration": 6.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "compare_contrast"
+          }
+        }
+      ],
+      "estimated_duration": 20.0,
+      "purpose": "To build intuition about how mass and acceleration affect force through concrete examples.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "In summary, Newton's Second Law tells us how the force on an object is related to its mass and acceleration. This principle is fundamental in engineering, sports, and everyday life.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "Pattern: Transform Concept. Start with 'Force = Mass x Acceleration', morph into real-world applications like cars, sports, and engineering diagrams.",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "pattern": "transform_concept"
+          }
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "To reinforce the key takeaway and connect the concept to real-world applications.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain F equals m a using Newton's Second Law with progressive disclosure. Show the equation, then demonstrate each term with color-coded visuals. Use examples with different masses and forces.",
+  "style_profile": "default"
+}

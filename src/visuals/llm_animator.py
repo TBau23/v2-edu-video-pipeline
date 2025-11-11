@@ -29,12 +29,68 @@ Generate executable Python code that creates Manim objects and animates them. Th
 
 **IMPORTANT**: Do NOT create a class or def construct(). Just write the animation code directly.
 
+## 3Blue1Brown Educational Philosophy
+
+You are creating animations in the style of 3Blue1Brown - the gold standard for mathematical visualization. Follow these core principles:
+
+### 1. Progressive Disclosure (MOST IMPORTANT)
+**Never show everything at once.** Build understanding step by step:
+- Start with the simplest element
+- Add one piece of complexity at a time
+- Each animation adds ONE new insight
+- Keep previous elements visible as you add new ones
+
+**Example: Teaching F=ma**
+```python
+# ❌ BAD: Show everything at once
+car = Rectangle(...)
+force_arrow = Arrow(...)
+equation = MathTex("F = ma")
+self.play(FadeIn(VGroup(car, force_arrow, equation)))  # Too much!
+
+# ✅ GOOD: Progressive disclosure
+# Step 1: Introduce the object
+car = Rectangle(width=2, height=1, color=BLUE, fill_opacity=0.8)
+self.play(Create(car), run_time=0.8)
+
+# Step 2: Add the force
+force_arrow = Arrow(car.get_left(), car.get_left() + LEFT*1.5, color=RED, buff=0)
+self.play(Create(force_arrow), run_time=0.7)
+
+# Step 3: Show the effect (acceleration)
+self.play(car.animate.shift(RIGHT*3), run_time=1.5)
+```
+
+### 2. Visual Continuity
+**Objects should transform and evolve, not disappear and reappear:**
+- Use `Transform` and `ReplacementTransform` to morph concepts
+- Keep elements on screen and build on them
+- Create narrative flow: "this becomes that"
+
+### 3. Color as Semantic Meaning
+**Colors represent concepts, not just decoration:**
+- `BLUE` = Primary concept/object being studied
+- `RED` = Forces, energy, important relationships
+- `GREEN` = Examples, specific instances
+- `YELLOW` = Highlights, attention focus
+- `WHITE` = Equations, formulas
+- Use the SAME color for the SAME concept throughout
+
+### 4. Mathematical Correspondence
+**Visuals should directly relate to equation terms:**
+- Color-code equation terms to match their visual representations
+- Point to/highlight specific terms while showing their meaning
+- Animations of visuals should mirror animations of equations
+
 ## Code Structure
 
 1. **No class or function definitions** - Just write the animation code directly
-2. **Use `self`** - You have access to `self.play()`, `self.wait()`, `self.add()`, etc.
-3. **Duration Control**: Use `self.wait()` and animation `run_time` parameters to match target duration
-4. **Simplicity**: Keep animations simple and clear - complex scenes often fail to render
+2. **Use `self`** - You have access to `self.play()`, `self.add()`, etc.
+3. **Duration Control**:
+   - Use `run_time` parameter in `self.play()` calls
+   - **DO NOT use `self.wait()`** - duration timing is handled automatically
+   - Focus on animation timing, not total duration
+4. **Progressive Building**: Build scenes step-by-step, don't show everything at once
 5. **Direct execution**: Code will be executed with exec() in the scene context
 
 ## Available Manim Components
@@ -70,20 +126,98 @@ Generate executable Python code that creates Manim objects and animates them. Th
 - `mobject.next_to(other, direction)` - position relative to another object
 - `mobject.to_edge(UP)` - move to screen edge
 
-**Colors**:
-- `BLUE`, `RED`, `GREEN`, `YELLOW`, `ORANGE`, `PURPLE`, `PINK`
-- `GRAY`, `DARK_GRAY`, `LIGHT_GRAY`
-- `WHITE`, `BLACK`
+**Colors** (Use semantically!):
+- `BLUE` - Primary concept/object
+- `RED` - Forces, energy, relationships
+- `GREEN` - Examples, specific instances
+- `YELLOW` - Highlights, attention
+- `ORANGE`, `PURPLE`, `PINK` - Secondary elements
+- `GRAY`, `DARK_GRAY`, `LIGHT_GRAY` - Background elements
+- `WHITE` - Equations, neutral
+- `BLACK` - Background (rarely used)
 
-**Grouping**:
-- `VGroup(obj1, obj2, obj3)` - group objects together
+**VGroup (Critical for Complex Scenes)**:
+```python
+# Create complex scene by grouping
+car = Rectangle(...)
+arrow = Arrow(...)
+label = Text("Force")
 
-## Animation Control
+# Group them together
+scene = VGroup(car, arrow, label)
 
+# Arrange spatially
+scene.arrange(DOWN, buff=0.5)  # Stack vertically
+# OR
+scene.arrange(RIGHT, buff=1)  # Arrange horizontally
+
+# Animate as a unit
+self.play(FadeIn(scene))
+self.play(scene.animate.shift(UP*2))
+
+# Or animate individually after grouping
+self.play(
+    FadeIn(car),
+    FadeIn(arrow),
+    FadeIn(label),
+    run_time=1.2
+)
+```
+
+## Animation Control & Advanced Techniques
+
+**Basic Control**:
 - `self.play(animation, run_time=2.0)` - play animation with specific duration
-- `self.wait(1.5)` - pause for time
 - `self.add(mobject)` - add to scene without animation
 - `self.remove(mobject)` - remove from scene
+
+**Transform (Visual Continuity)**:
+```python
+# Transform: Morph one object into another (keeps original object)
+circle = Circle(color=BLUE)
+square = Square(color=RED)
+
+self.play(Create(circle), run_time=0.8)
+self.play(Transform(circle, square), run_time=1.2)
+# circle now looks like square, but `circle` variable still exists
+
+# ReplacementTransform: Remove old, add new
+concept_text = Text("General Idea")
+specific_text = Text("Specific Example")
+
+self.play(Write(concept_text), run_time=1.0)
+self.play(ReplacementTransform(concept_text, specific_text), run_time=1.2)
+# concept_text is now gone, specific_text is on screen
+```
+
+**Indicate & FocusOn (Drawing Attention)**:
+```python
+# Indicate: Briefly highlight/emphasize an object
+equation = MathTex("F", "=", "m", "a").to_edge(UP)
+self.play(Write(equation))
+
+# Highlight the 'F' term
+self.play(Indicate(equation[0], color=YELLOW), run_time=0.8)
+
+# Or use FocusOn for a spotlight effect
+self.play(FocusOn(equation[2]), run_time=0.5)  # Focus on 'm'
+```
+
+**Simultaneous Animations (Natural Pacing)**:
+```python
+# Overlap animations for smooth transitions
+old_obj = Circle(color=BLUE)
+new_obj = Square(color=RED).shift(RIGHT*2)
+
+self.play(Create(old_obj), run_time=0.8)
+
+# Fade out old while fading in new (no gap!)
+self.play(
+    FadeOut(old_obj, shift=LEFT),
+    FadeIn(new_obj, shift=LEFT),
+    run_time=1.2
+)
+```
 
 ## Important Guidelines
 
@@ -106,30 +240,109 @@ Generate executable Python code that creates Manim objects and animates them. Th
 
 **Remember: Simple geometric shapes are more effective for education than complex realistic drawings. A car is just a rectangle. A person is just a circle. Keep it abstract.**
 
-## Example Code
+## Educational Animation Patterns (3Blue1Brown Style)
 
-Here's a reference for good, SIMPLE inline animation code:
+These are proven patterns for teaching concepts visually. Use these as templates:
+
+### Pattern 1: Introduce → Elaborate → Apply (Progressive Disclosure)
+**Best for: Introducing new concepts**
 
 ```python
-# Simple circle moving across screen
-circle = Circle(radius=1, color=BLUE, fill_opacity=0.5)
-circle.shift(LEFT * 3)
+# Step 1: Introduce (simple)
+obj = Circle(radius=0.8, color=BLUE, fill_opacity=0.8)
+self.play(Create(obj), run_time=0.8)
 
-self.play(FadeIn(circle), run_time=1.0)
-self.play(circle.animate.shift(RIGHT * 6), run_time=2.0)
-self.wait(1.0)
+# Step 2: Elaborate (add context)
+label = Text("Mass").scale(0.7).next_to(obj, UP)
+self.play(Write(label), run_time=0.7)
+
+# Step 3: Apply (show in action)
+force = Arrow(obj.get_left(), obj.get_left() + LEFT, color=RED, buff=0)
+self.play(Create(force), run_time=0.6)
+self.play(obj.animate.shift(RIGHT*3), run_time=1.5)
 ```
 
-## Example: Car Accelerating (CORRECT - SIMPLE)
-```python
-# Car = just a rectangle, nothing more!
-car = Rectangle(width=1.5, height=0.8, color=BLUE, fill_opacity=0.8)
-car.shift(LEFT * 4)
+### Pattern 2: Equation → Visual → Example (Mathematical Correspondence)
+**Best for: Explaining formulas**
 
-# Simple animation
-self.play(FadeIn(car), run_time=0.5)
-self.play(car.animate.shift(RIGHT * 8), run_time=3.0, rate_func=smooth)
-self.wait(0.5)
+```python
+# Step 1: Show equation
+equation = MathTex("F", "=", "m", "a").to_edge(UP)
+equation[0].set_color(RED)    # Force
+equation[2].set_color(BLUE)   # Mass
+equation[3].set_color(GREEN)  # Acceleration
+self.play(Write(equation), run_time=1.2)
+
+# Step 2: Visual for each term
+mass = Circle(radius=0.5, color=BLUE, fill_opacity=0.8)
+mass.shift(DOWN + LEFT*2)
+
+self.play(Indicate(equation[2], color=YELLOW), run_time=0.5)  # Highlight 'm'
+self.play(FadeIn(mass), run_time=0.7)  # Show corresponding visual
+
+# Step 3: Show relationship
+force_arrow = Arrow(mass.get_left(), mass.get_left() + LEFT, color=RED)
+self.play(
+    Indicate(equation[0], color=YELLOW),
+    Create(force_arrow),
+    run_time=0.8
+)
+
+# Step 4: Show result (acceleration)
+self.play(
+    Indicate(equation[3], color=YELLOW),
+    mass.animate.shift(RIGHT*2.5),
+    run_time=1.3
+)
+```
+
+### Pattern 3: Transform Concept (Visual Continuity)
+**Best for: Showing relationships between ideas**
+
+```python
+# Start with general idea
+general = Text("Objects resist change").scale(0.8)
+self.play(Write(general), run_time=1.0)
+
+# Morph to specific law
+specific = Text("Newton's First Law").scale(0.9)
+self.play(ReplacementTransform(general, specific), run_time=1.2)
+
+# Morph to equation
+equation = MathTex(r"\vec{v} = \text{constant when } \sum \vec{F} = 0")
+self.play(ReplacementTransform(specific, equation), run_time=1.3)
+```
+
+### Pattern 4: Compare & Contrast (Simultaneous Display)
+**Best for: Showing differences**
+
+```python
+# Set up two scenarios side by side
+# Scenario 1: With friction
+friction_scene = VGroup(
+    Rectangle(width=1, height=0.6, color=BLUE, fill_opacity=0.8),
+    Text("With Friction").scale(0.5)
+).arrange(DOWN).shift(LEFT*2.5)
+
+# Scenario 2: Without friction
+no_friction_scene = VGroup(
+    Rectangle(width=1, height=0.6, color=GREEN, fill_opacity=0.8),
+    Text("No Friction").scale(0.5)
+).arrange(DOWN).shift(RIGHT*2.5)
+
+# Show both at once
+self.play(
+    FadeIn(friction_scene),
+    FadeIn(no_friction_scene),
+    run_time=1.0
+)
+
+# Animate differently
+self.play(
+    friction_scene[0].animate.shift(DOWN*0.5),  # Slow/stop
+    no_friction_scene[0].animate.shift(DOWN*2),  # Keep going
+    run_time=2.0
+)
 ```
 
 ❌ **DON'T**: Make complex multi-part objects
@@ -139,29 +352,25 @@ self.wait(0.5)
 
 **Object moving across screen**:
 ```python
-obj = Circle(color=BLUE)
+obj = Circle(color=BLUE, fill_opacity=0.8)
 obj.shift(LEFT * 4)
-self.play(FadeIn(obj), run_time=0.5)
-self.play(obj.animate.shift(RIGHT * 8), run_time=3.0)
-self.wait(0.5)
+self.play(FadeIn(obj), run_time=0.7)
+self.play(obj.animate.shift(RIGHT * 8), run_time=2.8)
 ```
 
 **Text appearing then disappearing**:
 ```python
 text = Text("Hello World", font_size=48)
-self.play(Write(text), run_time=1.0)
-self.wait(2.0)
-self.play(FadeOut(text), run_time=0.5)
+self.play(Write(text), run_time=1.5)
+self.play(FadeOut(text), run_time=1.0)
 ```
 
 **Shape transformation**:
 ```python
-circle = Circle(color=BLUE)
-square = Square(color=RED)
-self.play(Create(circle), run_time=1.0)
-self.wait(0.5)
-self.play(Transform(circle, square), run_time=1.5)
-self.wait(1.0)
+circle = Circle(color=BLUE, fill_opacity=0.7)
+square = Square(color=RED, fill_opacity=0.7)
+self.play(Create(circle), run_time=1.2)
+self.play(Transform(circle, square), run_time=1.8)
 ```
 
 ## Output Format
@@ -260,6 +469,9 @@ Just write the animation code that can be executed directly in a Scene's constru
 
         # Validate code structure for inline code
         _validate_inline_code(code)
+
+        # Add deterministic duration control
+        code = add_deterministic_duration(code, duration)
 
         logger.info("✓ Animation code generated successfully")
         logger.debug(f"Generated code:\n{code}")
@@ -368,6 +580,51 @@ def _validate_inline_code(code: str) -> None:
         )
 
     logger.debug("✓ Inline code validation passed")
+
+
+def add_deterministic_duration(code: str, target_duration: float) -> str:
+    """Add deterministic wait() to match target duration.
+
+    Parses all run_time parameters, calculates total animation time,
+    and adds a wait() call for remaining duration.
+
+    Args:
+        code: Generated animation code
+        target_duration: Target duration in seconds
+
+    Returns:
+        Code with deterministic wait() appended
+
+    Example:
+        >>> code = "self.play(FadeIn(obj), run_time=1.5)\\nself.play(obj.animate.shift(RIGHT*3), run_time=2.0)"
+        >>> add_deterministic_duration(code, 4.0)
+        # Returns code with "self.wait(0.5)" appended
+    """
+    import re
+
+    # Find all run_time values using regex
+    # Matches: run_time=1.5, run_time = 2.0, run_time= 3
+    run_time_pattern = r'run_time\s*=\s*([\d.]+)'
+    matches = re.findall(run_time_pattern, code)
+
+    # Calculate total animation time
+    total_animation_time = sum(float(t) for t in matches)
+
+    # Calculate remaining time
+    remaining = target_duration - total_animation_time
+
+    logger.debug(f"Animation time: {total_animation_time:.2f}s, Target: {target_duration:.2f}s, Remaining: {remaining:.2f}s")
+
+    # Add wait if we have significant remaining time
+    # Minimum threshold of 0.1s to avoid tiny waits
+    if remaining > 0.1:
+        code = code.rstrip() + f"\nself.wait({remaining:.2f})"
+        logger.debug(f"Added wait({remaining:.2f}s)")
+    elif remaining < -0.1:
+        # Animation is longer than target - log warning but don't error
+        logger.warning(f"Animation time ({total_animation_time:.2f}s) exceeds target ({target_duration:.2f}s)")
+
+    return code
 
 
 def execute_animation_code(

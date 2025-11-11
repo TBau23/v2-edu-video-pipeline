@@ -344,8 +344,9 @@ class VisualRenderer:
                     logger.debug(f"Executing inline animation code:\n{code}")
 
                     # Import Manim objects that the generated code might use
-                    from manim import Circle, Square, Rectangle, Dot, Arrow, Line
-                    from manim import FadeIn, FadeOut, Create, Write, Transform
+                    from manim import Circle, Square, Rectangle, Dot, Arrow, Line, Text, MathTex, VGroup
+                    from manim import FadeIn, FadeOut, Create, Write, Transform, ReplacementTransform
+                    from manim import Indicate, FocusOn
                     from manim import UP, DOWN, LEFT, RIGHT, ORIGIN
                     from manim import BLUE, RED, GREEN, YELLOW, ORANGE, PURPLE, PINK
                     from manim import GRAY, DARK_GRAY, LIGHT_GRAY, WHITE, BLACK
@@ -354,8 +355,10 @@ class VisualRenderer:
                     exec(code, {'self': self, '__builtins__': __builtins__,
                                 'Circle': Circle, 'Square': Square, 'Rectangle': Rectangle,
                                 'Dot': Dot, 'Arrow': Arrow, 'Line': Line,
+                                'Text': Text, 'MathTex': MathTex, 'VGroup': VGroup,
                                 'FadeIn': FadeIn, 'FadeOut': FadeOut, 'Create': Create,
-                                'Write': Write, 'Transform': Transform,
+                                'Write': Write, 'Transform': Transform, 'ReplacementTransform': ReplacementTransform,
+                                'Indicate': Indicate, 'FocusOn': FocusOn,
                                 'UP': UP, 'DOWN': DOWN, 'LEFT': LEFT, 'RIGHT': RIGHT, 'ORIGIN': ORIGIN,
                                 'BLUE': BLUE, 'RED': RED, 'GREEN': GREEN, 'YELLOW': YELLOW,
                                 'ORANGE': ORANGE, 'PURPLE': PURPLE, 'PINK': PINK,

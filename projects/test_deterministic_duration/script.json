@@ -1,0 +1,109 @@
+{
+  "title": "Understanding Momentum with a Sliding Ball",
+  "topic": "Explaining the concept of momentum using a simple sliding ball scenario.",
+  "acts": [
+    {
+      "id": "act_1_motivation",
+      "narration": "Imagine gently sliding a ball across a smooth floor. Why does it keep moving even after you stop pushing it? This is due to momentum.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A yellow circle representing a ball sliding smoothly from left to right across the screen on a flat surface",
+          "animation_style": "play",
+          "duration": 3.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Hook the audience with a relatable scenario and introduce the topic of momentum.",
+      "notes": null
+    },
+    {
+      "id": "act_2_concept_explanation",
+      "narration": "Momentum is a measure of the motion of an object and is dependent on two factors: mass and velocity.",
+      "visuals": [
+        {
+          "type": "text",
+          "content": "Momentum = Mass x Velocity",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "font_size": 42,
+            "color": "accent"
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Introduce the concept of momentum and its dependence on mass and velocity.",
+      "notes": null
+    },
+    {
+      "id": "act_3_equation_formula",
+      "narration": "The formula for momentum is p equals m multiplied by v, where p is momentum, m is mass, and v is velocity.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "p = m \\times v",
+          "animation_style": "write",
+          "duration": null,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {
+            "color": "equation_color",
+            "font_size": 48
+          }
+        }
+      ],
+      "estimated_duration": 8.0,
+      "purpose": "Present and explain the mathematical representation of momentum.",
+      "notes": null
+    },
+    {
+      "id": "act_4_examples",
+      "narration": "Let's see an example. A ball of mass 2 kg sliding with a velocity of 3 m/s. Its momentum is 6 kg·m/s.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A purple circle representing a ball with an adjacent label showing mass = 2 kg and velocity = 3 m/s, then calculating the momentum as 6 kg·m/s",
+          "animation_style": "play",
+          "duration": 5.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 15.0,
+      "purpose": "Provide a concrete example to build intuition about how to calculate momentum.",
+      "notes": null
+    },
+    {
+      "id": "act_5_conclusion_applications",
+      "narration": "Understanding momentum helps explain why objects in motion stay in motion and is fundamental in physics. It applies to everything from sports to car safety.",
+      "visuals": [
+        {
+          "type": "animation",
+          "content": "A sequence of simple shapes: a rectangle representing a car, a circle as a soccer ball, and a square as a box, all moving to illustrate motion",
+          "animation_style": "play",
+          "duration": 4.0,
+          "trigger_words": null,
+          "lead_time": 0.5,
+          "position": "center",
+          "params": {}
+        }
+      ],
+      "estimated_duration": 10.0,
+      "purpose": "Summarize the concept and connect it to real-world applications.",
+      "notes": null
+    }
+  ],
+  "source_prompt": "Explain momentum with a sliding ball",
+  "style_profile": "default"
+}
