@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-dev \
     libxml2-dev \
     libpixman-1-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -27,8 +28,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Expose Gradio port
+# Environment variables for cloud deployment
+ENV PYTHONUNBUFFERED=1
+ENV PORT=7860
+
+# Expose Gradio port (AWS App Runner will use this)
 EXPOSE 7860
 
-# Run the web app
-CMD ["python", "examples/web_app.py"]
+# Health check for AWS App Runner
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:${PORT}/ || exit 1
+
+# Run the web app with unbuffered output
+CMD ["python", "-u", "examples/web_app.py"]
