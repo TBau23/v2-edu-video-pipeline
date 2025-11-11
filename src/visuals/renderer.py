@@ -87,6 +87,13 @@ class VisualRenderer:
         manim_config.output_file = str(self.output_dir)
         manim_config.media_dir = str(self.output_dir.parent / "manim_media")
 
+        # Performance settings for resource-constrained environments
+        # Disable caching entirely since we never re-render the same content
+        # This saves RAM and disk space with zero downside for one-time renders
+        manim_config.disable_caching = True
+
+        logger.info("Manim configured: caching disabled for optimal resource usage")
+
     def render_act(
         self,
         act: Act,

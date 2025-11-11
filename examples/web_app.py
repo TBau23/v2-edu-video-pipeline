@@ -11,11 +11,27 @@ Usage:
 
 import os
 import sys
+import logging
 from pathlib import Path
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
+
+# Configure logging for Render visibility
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout)
+    ],
+    force=True  # Override any existing config
+)
+# Ensure logs flush immediately (critical for Render)
+for handler in logging.root.handlers:
+    handler.flush = lambda: sys.stdout.flush()
+
+logger = logging.getLogger(__name__)
 
 import gradio as gr
 from src.pipeline.orchestrator import VideoPipeline
@@ -38,10 +54,19 @@ def generate_video(prompt: str) -> str:
     if not api_key:
         raise gr.Error("OPENAI_API_KEY not configured. Please contact the administrator.")
 
+    logger.info("="*80)
+    logger.info(f"NEW VIDEO GENERATION REQUEST")
+    logger.info(f"Prompt: {prompt}")
+    logger.info("="*80)
+    sys.stdout.flush()
+
     try:
         # Initialize pipeline
         workspace = project_root / "projects"
         pipeline = VideoPipeline(workspace)
+
+        logger.info(f"Pipeline initialized with workspace: {workspace}")
+        sys.stdout.flush()
 
         # Generate video
         result = pipeline.generate(
@@ -49,12 +74,15 @@ def generate_video(prompt: str) -> str:
             openai_key=api_key
         )
 
+        logger.info(f"VIDEO GENERATION COMPLETE: {result.video_path}")
+        logger.info(f"Duration: {result.duration:.1f}s, Acts: {result.num_acts}")
+        sys.stdout.flush()
+
         return str(result.video_path)
 
     except Exception as e:
-        print(f"Error generating video: {e}")
-        import traceback
-        traceback.print_exc()
+        logger.error(f"ERROR generating video: {e}", exc_info=True)
+        sys.stdout.flush()
         raise gr.Error(f"Video generation failed: {str(e)}")
 
 
