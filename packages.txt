@@ -1,10 +1,4 @@
-# System packages required for Hugging Face Spaces deployment
-# HF Spaces will automatically install these via apt-get
-
-# FFmpeg for video assembly
 ffmpeg
-
-# LaTeX for equation rendering
 texlive-latex-base
 texlive-fonts-recommended
 texlive-latex-extra

@@ -33,3 +33,5 @@ videos/
 # OS
 .DS_Store
 Thumbs.db
+
+/projects

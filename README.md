@@ -1,143 +1,80 @@
-# Educational Video Generation Pipeline
+---
+title: Educational Video Generator
+emoji: 🎓
+colorFrom: blue
+colorTo: purple
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+license: mit
+---
 
-A modular, composable pipeline for generating high-quality educational videos using AI and Manim.
+# 🎓 AI Educational Video Generator
 
-## Architecture
+Generate educational videos from text prompts using AI. Enter a topic, wait 3-5 minutes, and get a complete video with narration, equations, and animations.
 
-**Design Philosophy**: Modular pipeline with composable primitives, emphasizing editability and iteration.
+## How it works
 
-### Core Primitives
+1. **Enter a topic**: Describe what concept you want explained
+2. **AI generates**:
+   - Script with structured acts
+   - Natural-sounding narration (text-to-speech)
+   - Mathematical equations and diagrams
+   - Physics animations
+3. **Get video**: Watch or download the final MP4
 
-All primitives are Pydantic models that serialize to/from JSON for easy editing:
+## Example Prompts
 
-- **Act**: Fundamental unit representing one video segment (narration + visuals + timing)
-- **Script**: Collection of Acts with metadata (5-act pedagogical structure)
-- **VisualSpec**: Declarative description of what to show (equation, graph, animation, diagram, text)
-- **AudioSegment**: Generated audio with timing metadata for sync
-- **VideoProject**: Top-level project container with all artifacts
+- "Explain Newton's First Law with a car accelerating on a highway"
+- "What is the Pythagorean theorem? Show it with a right triangle"
+- "Describe photosynthesis with diagrams of a plant cell"
+- "Explain momentum using a hockey puck sliding on ice"
 
-### Pipeline Layers
+## Tech Stack
 
-```
-User Prompt → Script Generation → Audio Synthesis → Visual Generation → Video Assembly
-                     ↓                  ↓                  ↓                  ↓
-                [5 Acts]          [Audio + Timing]    [Manim Renders]    [Final MP4]
-```
+- **Script Generation**: OpenAI GPT-4
+- **Audio Synthesis**: OpenAI TTS
+- **Visual Rendering**: Manim (mathematics animation engine)
+- **Video Assembly**: FFmpeg
 
-1. **Script Generation**: LLM generates complete 5-act structure with detailed narration and visual specs
-2. **Audio Synthesis**: TTS (OpenAI/ElevenLabs) generates audio with word-level timestamps
-3. **Visual Generation**: Manim renders animations, equations, graphs based on VisualSpecs
-4. **Assembly**: ffmpeg combines audio + visuals with precise synchronization
+## ⏱️ Note on Speed
 
-## Project Structure
+Video generation takes **3-5 minutes** (or 5-10 minutes on free tier hardware). This is because:
+- AI generates a detailed script
+- Text-to-speech creates narration
+- Manim renders equations and animations
+- FFmpeg assembles everything into final video
 
-```
-src/
-  primitives/      # Core data models (Act, Script, VisualSpec, etc.)
-  script/          # LLM-based script generation
-  audio/           # TTS integration (TODO)
-  visuals/         # Manim scene generation (TODO)
-  assembly/        # Video compilation (TODO)
-  style/           # Style system (colors, fonts, timing, voice)
-  utils/           # File I/O and workspace management
+Please be patient! The result is worth the wait.
 
-projects/          # User project workspaces
-  project_name_YYYY_MM_DD/
-    project.json   # VideoProject metadata
-    script.json    # Editable script
-    style.json     # Editable style config
-    audio/         # Generated audio files
-    visuals/       # Generated animations
-    renders/       # Final videos
-```
+## Tips for Best Results
 
-## Setup
+- **Be specific**: "Explain photosynthesis with a chloroplast diagram" is better than just "photosynthesis"
+- **Include examples**: "Use a car example for acceleration" helps the AI understand what you want
+- **One concept per video**: Focus on a single topic rather than multiple concepts
+- **Mention visual preferences**: If you want equations, animations, or diagrams, say so!
 
-1. Create virtual environment:
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
+## Credits
 
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+Built with:
+- [Manim](https://www.manim.community/) - Mathematics animation engine
+- [Gradio](https://gradio.app/) - Web interface
+- [OpenAI](https://openai.com/) - GPT-4 and TTS
+- [FFmpeg](https://ffmpeg.org/) - Video processing
 
-3. Set OpenAI API key (for script generation and TTS):
-```bash
-export OPENAI_API_KEY='your-key-here'
-# Or add to .env file
-echo "OPENAI_API_KEY=your-key-here" >> .env
-```
+## Source Code
 
-## Usage
+View the full source code and documentation at: [GitHub Repository Link]
 
-### Generate a Script
+## Limitations
 
-```bash
-source venv/bin/activate
-python examples/generate_script.py
-```
+- Public free hosting (videos may take longer to generate)
+- Single user at a time (others queue automatically)
+- Videos deleted after 24 hours (download to keep)
+- English language only
+- Topics limited to physics, math, and basic sciences
 
-This will:
-1. Use LLM to generate a 5-act script with detailed narration and visual specs
-2. Create a project workspace with editable JSON files
-3. Output: `projects/*/script.json` (ready to edit and iterate)
+## Support
 
-### Create a Project Manually
-
-```bash
-python examples/create_simple_project.py
-```
-
-Creates a project with hardcoded Acts (useful for testing).
-
-## Key Features
-
-### 1. Editability
-All outputs are human-readable JSON:
-- Edit `script.json` to tweak narration or visual descriptions
-- Edit `style.json` to change colors, fonts, timing
-- Regenerate from any point in the pipeline
-
-### 2. Modularity
-Each layer is independent:
-- Swap TTS providers (OpenAI ↔ ElevenLabs)
-- Change visual rendering engine
-- Iterate on script without regenerating audio
-
-### 3. Timing-Aware
-Built for precise audio-visual sync:
-- Word-level timestamps from TTS
-- Visual timing hints in VisualSpecs
-- Target: ±300ms synchronization
-
-### 4. Pedagogically Sound
-5-act structure proven effective:
-1. Motivation (hook with real-world example)
-2. Concept (high-level explanation)
-3. Equation (mathematical formulation)
-4. Examples (3 concrete cases)
-5. Conclusion (applications and summary)
-
-## Roadmap
-
-- [x] Core primitives and data models
-- [x] Workspace management system
-- [x] Style configuration system
-- [x] Script generation with LLM
-- [ ] Audio synthesis (OpenAI TTS + ElevenLabs)
-- [ ] Visual rendering with Manim
-- [ ] Audio-visual synchronization
-- [ ] Video assembly with ffmpeg
-- [ ] Preview mode (low-res fast iteration)
-- [ ] Web UI for prompts and iteration
-
-## Contributing
-
-See `project_high_level_outline.md` for detailed requirements and success criteria.
-
-## License
-
-[TBD]
+Having issues? Check the logs or contact the developer.

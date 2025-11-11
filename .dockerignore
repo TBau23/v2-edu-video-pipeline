@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Project specific
+.env
+projects/
+*.mp4
+*.mp3
+*.aiff
+*.wav
+
+# Test outputs
+test_output/
+src/visuals/test_output/
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+*.md
+planning/
+HUGGINGFACE_DEPLOYMENT.md
+
+# Mac
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
