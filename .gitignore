@@ -30,6 +30,40 @@ projects/*/  # User project workspaces (can be versioned separately)
 media/
 videos/
 
+# Test outputs and generated content
+test_output/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wav
+*.mp3
+*.aac
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+
+# Build and deployment
+*.log
+*.pid
+*.seed
+*.pid.lock
+.coverage
+.nyc_output
+coverage/
+dist/
+build/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# AWS
+.aws/
+*.pem
+
 # OS
 .DS_Store
 Thumbs.db
