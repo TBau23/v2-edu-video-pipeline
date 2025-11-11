@@ -9,6 +9,12 @@ RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
     build-essential \
+    pkg-config \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libglib2.0-dev \
+    libxml2-dev \
+    libpixman-1-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
