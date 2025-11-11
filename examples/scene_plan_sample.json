@@ -1,0 +1,28 @@
+{
+  "title": "Sample Lesson",
+  "topic": "Deterministic Layout",
+  "source_prompt": "sample",
+  "acts": [
+    {
+      "id": "act_1_intro",
+      "narration": "We will explain why deterministic planning matters.",
+      "visuals": [
+        {
+          "type": "equation",
+          "content": "F = ma",
+          "animation_style": "write",
+          "position": "top",
+          "duration": 5.0,
+          "params": {"color": "yellow"}
+        },
+        {
+          "type": "diagram",
+          "content": "free_body_diagram",
+          "animation_style": "fade",
+          "position": "bottom_right",
+          "params": {"caption": "Force vectors"}
+        }
+      ]
+    }
+  ]
+}
