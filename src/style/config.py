@@ -86,9 +86,9 @@ class VoiceConfig(BaseModel):
 class LayoutConfig(BaseModel):
     """Layout and positioning configuration."""
 
-    # Video dimensions
-    resolution: Tuple[int, int] = Field(default=(1920, 1080), description="Video resolution (width, height)")
-    fps: int = Field(default=30, description="Frames per second")
+    # Video dimensions (reduced defaults for memory-constrained environments)
+    resolution: Tuple[int, int] = Field(default=(1280, 720), description="Video resolution (width, height) - 720p saves memory vs 1080p")
+    fps: int = Field(default=24, description="Frames per second - 24fps saves memory vs 30fps")
 
     # Margins and spacing
     margin: int = Field(default=100, description="Edge margin in pixels")

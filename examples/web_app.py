@@ -60,6 +60,37 @@ def generate_video(prompt: str) -> str:
     logger.info("="*80)
     sys.stdout.flush()
 
+    # Check available memory (fail fast if too low)
+    try:
+        import psutil
+        mem = psutil.virtual_memory()
+        available_gb = mem.available / (1024**3)
+        total_gb = mem.total / (1024**3)
+
+        print(f"💾 Memory: {available_gb:.2f}GB available / {total_gb:.2f}GB total", flush=True)
+        logger.info(f"Memory check: {available_gb:.2f}GB available / {total_gb:.2f}GB total")
+
+        # Warn if low memory (Render starter = 0.5GB)
+        if total_gb < 1.0:
+            msg = (
+                f"⚠️ WARNING: Only {total_gb:.2f}GB RAM available. "
+                f"Video rendering typically needs 2-4GB. "
+                f"This may fail or take extremely long on limited hardware."
+            )
+            print(msg, flush=True)
+            logger.warning(msg)
+
+        if available_gb < 0.3:
+            raise gr.Error(
+                f"Not enough memory available ({available_gb:.2f}GB free). "
+                f"Video rendering requires at least 1GB RAM. "
+                f"Please upgrade your hosting plan or run locally."
+            )
+    except ImportError:
+        pass
+
+    sys.stdout.flush()
+
     try:
         # Initialize pipeline
         workspace = project_root / "projects"
